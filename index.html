@@ -1,0 +1,3115 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#f4ede0">
+<script>
+// PWA Manifest per Android Chrome
+(function(){
+  const icon = "data:image/png;base64,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";
+  const manifest = {
+    name:"Àpats Aina",
+    short_name:"Àpats Aina",
+    description:"Calendari de sopars per a l'Aina",
+    start_url:"./",
+    display:"standalone",
+    background_color:"#faf6ed",
+    theme_color:"#faf6ed",
+    orientation:"portrait",
+    categories:["food","lifestyle"],
+    icons:[
+      {src:icon,sizes:"512x512",type:"image/png",purpose:"any maskable"},
+      {src:icon,sizes:"192x192",type:"image/png",purpose:"any maskable"}
+    ],
+    screenshots:[],
+    prefer_related_applications:false
+  };
+  const blob = new Blob([JSON.stringify(manifest)],{type:"application/manifest+json"});
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("link");
+  link.rel="manifest"; link.href=url;
+  document.head.appendChild(link);
+})();
+</script>
+<title>Àpats Aina</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#faf6ed;
+  --paper-2:#f3ead8;
+  --paper-edge:#e8dfc8;
+  --ink:#2a2620;
+  --ink-soft:#5a554a;
+  --red:#a83b2e;
+  --red-light:#c25240;
+  --olive:#6b7340;
+  --olive-light:#8a9a55;
+  --pencil:#8a8576;
+  --line:#d4cdb8;
+  --gold:#c89860;
+
+  /* Compatibilitat amb noms antics que apareixen al codi */
+  --cream:var(--paper-edge);
+  --cream-2:var(--paper-2);
+  --sage:var(--olive);
+  --sage-2:var(--olive-light);
+  --terra:var(--red);
+  --terra-2:var(--red-light);
+  --muted:var(--pencil);
+
+  --shadow:2px 3px 0 rgba(42,38,32,.12);
+  --r:6px;
+  --touch:48px;
+}
+
+*{box-sizing:border-box;-webkit-font-smoothing:antialiased}
+html{height:100%;height:100dvh}
+body{
+  margin:0;padding:0;
+  font-family:'Source Serif 4',Georgia,serif;
+  color:var(--ink);font-size:15px;line-height:1.55;
+  background:var(--paper-edge);
+  height:100vh;height:100dvh;
+  overflow:hidden;overscroll-behavior:none;
+}
+#app{
+  height:100vh;height:100dvh;
+  display:flex;flex-direction:column;
+  max-width:480px;margin:0 auto;
+  position:relative;
+  background:var(--paper);
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 31px, rgba(180,150,100,.07) 31px, rgba(180,150,100,.07) 32px);
+  box-shadow:0 0 40px rgba(0,0,0,.06);
+}
+/* Línia vermella vertical com bloc d'agenda */
+#app::before{
+  content:"";position:absolute;left:42px;top:0;bottom:0;width:1px;
+  background:var(--red);opacity:.3;z-index:0;pointer-events:none;
+}
+
+/* HEADER */
+header{
+  padding:calc(env(safe-area-inset-top) + 16px) 18px 12px 56px;
+  background:rgba(250,246,237,.96);
+  position:relative;z-index:5;flex-shrink:0;
+  border-bottom:none;
+}
+.brand{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-icon{width:42px;height:42px;flex-shrink:0}
+.logo-text{line-height:1}
+.logo-title{
+  font-family:'Caveat',cursive;font-weight:700;font-size:34px;
+  letter-spacing:0;color:var(--ink);line-height:.95;
+}
+.logo-title em{
+  font-style:normal;color:var(--red);
+  text-decoration:underline;text-decoration-color:var(--olive);
+  text-decoration-thickness:2.5px;text-underline-offset:5px;
+}
+.who{font-family:'Source Serif 4',serif;font-style:italic;font-size:11px;color:var(--ink-soft);margin-top:1px}
+
+.head-actions{display:flex;gap:6px;align-items:center}
+.head-btn{
+  width:34px;height:34px;border-radius:50%;border:1.5px solid var(--ink);
+  background:var(--paper);color:var(--ink);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.head-btn:active{background:var(--paper-2)}
+.head-btn svg{width:15px;height:15px;stroke-width:2}
+
+.sync{
+  font-family:'Caveat',cursive;font-size:13px;color:var(--olive);
+  font-weight:600;letter-spacing:0;text-transform:none;
+  background:none;padding:0;
+  white-space:nowrap;flex-shrink:0;
+}
+.sync.error{color:var(--red)}
+
+/* VISTA TOGGLE */
+.view-toggle{
+  display:flex;gap:0;background:transparent;
+  border:1.5px solid var(--ink);border-radius:0;
+  padding:0;margin-top:12px;overflow:hidden;
+}
+.view-btn{
+  flex:1;padding:7px 8px;border:none;background:transparent;
+  border-radius:0;font-family:'Caveat',cursive;font-size:16px;
+  font-weight:600;color:var(--ink-soft);cursor:pointer;text-transform:none;
+  letter-spacing:0;
+}
+.view-btn+.view-btn{border-left:1px solid var(--ink)}
+.view-btn.active{background:var(--ink);color:var(--paper);box-shadow:none}
+
+.weeknav{display:flex;align-items:center;justify-content:space-between;margin-top:10px;gap:8px}
+/* Sense botons de fletxa: weekrange ocupa tot */
+#weeknav-bar{justify-content:center}
+#weeknav-bar+.btn-today{margin-top:6px;align-self:center}
+
+.weekrange{
+  font-family:'Caveat',cursive;font-size:24px;font-weight:600;
+  color:var(--ink);text-align:center;flex:1;line-height:1;
+}
+.weekrange small{
+  display:block;font-family:'Source Serif 4',serif;font-style:italic;
+  font-size:11px;color:var(--pencil);letter-spacing:0;
+  text-transform:none;font-weight:400;margin-top:3px;
+}
+
+/* MAIN SCROLL */
+main{
+  flex:1;overflow:hidden;
+  position:relative;z-index:1;
+  display:flex;flex-direction:column;
+  min-height:0;
+}
+/* Tots els panes ocupen l'alçada completa */
+.tab-pane.active{
+  flex:1;min-height:0;
+}
+/* Panes de scroll normal */
+#pane-inv.active,#pane-shop.active,#pane-month.active,#pane-stats.active{
+  display:flex;flex-direction:column;
+  overflow-y:auto;overflow-x:hidden;
+  
+  padding:14px 14px calc(80px + env(safe-area-inset-bottom)) 56px;
+}
+
+/* TODAY CARD */
+.today-card{
+  background:#fff;border:1.5px solid var(--ink);
+  border-radius:4px;padding:16px 18px;margin-bottom:18px;
+  box-shadow:var(--shadow);position:relative;
+  transform:rotate(-.4deg);cursor:pointer;
+}
+.today-card:active{transform:rotate(-.4deg) scale(.99)}
+.today-card::before{
+  content:"";position:absolute;top:-9px;left:30px;width:54px;height:18px;
+  background:rgba(255,200,80,.55);border-radius:2px;
+  transform:rotate(-3deg);box-shadow:1px 1px 2px rgba(0,0,0,.08);
+}
+.today-kicker{
+  font-family:'Caveat',cursive;font-size:16px;color:var(--red);
+  font-weight:600;letter-spacing:0;text-transform:none;margin-bottom:2px;
+  transform:rotate(-1deg);display:inline-block;
+}
+.today-title{
+  font-family:'Caveat',cursive;font-size:28px;font-weight:600;
+  line-height:1.05;letter-spacing:0;color:var(--ink);
+}
+.today-meta{
+  display:flex;gap:12px;margin-top:6px;font-size:12px;
+  font-style:italic;color:var(--ink-soft);align-items:center;
+}
+.today-feasibility{
+  position:absolute;top:14px;right:14px;
+  background:none;color:var(--olive);
+  padding:0;border-radius:0;font-family:'Caveat',cursive;
+  font-size:18px;font-weight:700;letter-spacing:0;
+  transform:rotate(8deg);
+}
+.today-card.empty{
+  background:transparent;color:var(--pencil);
+  box-shadow:none;border:1.5px dashed var(--line);transform:none;
+}
+.today-card.empty::before{display:none}
+
+/* DAY CARDS */
+.day{
+  background:transparent;border:none;border-radius:0;
+  margin-bottom:22px;overflow:visible;box-shadow:none;
+  position:relative;
+}
+.day.today::before{
+  content:"avui";position:absolute;top:-2px;right:0;
+  font-family:'Caveat',cursive;font-size:18px;font-weight:700;
+  color:var(--red);background:none;padding:0;border-radius:0;
+  letter-spacing:0;text-transform:none;transform:rotate(-3deg);
+}
+.day-head{
+  padding:0 0 5px;display:flex;align-items:baseline;gap:12px;
+  border-bottom:1px solid var(--ink);margin-bottom:6px;
+}
+.day-name{
+  font-family:'Caveat',cursive;font-size:26px;font-weight:600;
+  color:var(--ink);letter-spacing:0;line-height:1;
+}
+.day-num{font-family:'Caveat',cursive;font-size:17px;color:var(--pencil);font-weight:500}
+.day-festiu{
+  margin-left:auto;font-family:'Caveat',cursive;font-size:14px;
+  color:var(--red);font-weight:600;letter-spacing:0;text-transform:none;
+}
+
+.meal{
+  padding:8px 0;display:flex;gap:10px;align-items:flex-start;
+  min-height:auto;border-top:1px dashed var(--line);
+  cursor:pointer;
+}
+.meal:first-of-type{border-top:none}
+.meal:active{background:rgba(212,205,184,.2)}
+.meal-tag{
+  font-size:0;width:14px;height:14px;border-radius:50%;
+  border:1.5px solid var(--ink);background:#fff;
+  flex-shrink:0;margin-top:6px;letter-spacing:0;padding:0;
+  text-align:center;
+}
+.meal-tag.lunch{background:var(--olive);border-color:var(--olive)}
+.meal-tag.dinner{background:var(--red);border-color:var(--red)}
+.meal-body{flex:1;min-width:0}
+.meal-name{
+  font-family:'Source Serif 4',serif;font-size:14.5px;
+  font-weight:500;color:var(--ink);line-height:1.3;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.meal-meta{
+  display:flex;gap:8px;align-items:center;margin-top:2px;
+  font-family:'Caveat',cursive;font-size:14px;color:var(--ink-soft);
+  font-weight:400;
+}
+.meal-meta::before{
+  content:"";display:block;
+}
+.meal-meta>span:first-child{font-style:italic}
+.meal-arrow{display:none}
+
+.fav-star{color:var(--gold);font-size:13px;margin-left:4px}
+
+.festiu-only{
+  padding:14px;text-align:center;color:var(--pencil);
+  font-family:'Caveat',cursive;font-size:18px;font-style:normal;
+}
+
+/* TAB BAR */
+nav.tabs{
+  position:fixed;bottom:0;left:0;right:0;
+  max-width:480px;margin:0 auto;
+  background:var(--paper);
+  border-top:1.5px solid var(--ink);
+  padding:6px 8px calc(6px + env(safe-area-inset-bottom));
+  display:flex;z-index:10;
+  box-shadow:0 -4px 16px -8px rgba(42,38,32,.1);
+}
+.tab{
+  flex:1;background:none;border:none;
+  min-height:var(--touch);padding:4px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;
+  color:var(--ink-soft);font-family:'Caveat',cursive;
+  font-size:15px;font-weight:600;letter-spacing:0;text-transform:none;
+  cursor:pointer;border-radius:0;position:relative;
+}
+.tab.active{color:var(--red)}
+.tab.active::after{
+  content:"";position:absolute;bottom:8px;left:50%;
+  width:24px;height:2px;background:var(--red);
+  border-radius:2px;transform:translateX(-50%);
+}
+.tab svg{width:22px;height:22px;stroke-width:1.5;margin-bottom:-2px}
+
+/* MODAL */
+.modal-bg{
+  position:fixed;inset:0;
+  background:rgba(42,38,32,.5);
+  z-index:20;opacity:0;pointer-events:none;transition:opacity .2s;
+}
+.modal-bg.open{opacity:1;pointer-events:auto}
+.modal{
+  position:fixed;bottom:0;left:0;right:0;
+  max-width:480px;margin:0 auto;
+  background:var(--paper);
+  background-image:repeating-linear-gradient(0deg, transparent, transparent 31px, rgba(180,150,100,.07) 31px, rgba(180,150,100,.07) 32px);
+  border-radius:16px 16px 0 0;
+  z-index:21;max-height:92vh;
+  border-top:2px solid var(--ink);
+  transform:translateY(100%);
+  transition:transform .28s cubic-bezier(.2,.8,.3,1);
+  display:flex;flex-direction:column;overflow:hidden;
+}
+.modal.open{transform:translateY(0)}
+.modal-grip{
+  width:36px;height:4px;background:var(--ink);opacity:.3;
+  border-radius:2px;margin:8px auto 0;flex-shrink:0;
+}
+.modal-head{
+  padding:14px 18px 12px;border-bottom:1px dashed var(--line);
+  display:flex;align-items:flex-start;gap:10px;flex-shrink:0;
+}
+.modal-head-info{flex:1;min-width:0}
+.modal-kicker{
+  font-family:'Caveat',cursive;font-size:15px;font-weight:600;
+  letter-spacing:0;text-transform:none;color:var(--red);margin-bottom:2px;
+}
+.modal-kicker.lunch{color:var(--olive)}
+.modal-title{
+  font-family:'Caveat',cursive;font-size:30px;font-weight:600;
+  line-height:1.05;color:var(--ink);
+}
+.modal-time{
+  font-family:'Caveat',cursive;font-size:15px;color:var(--ink-soft);
+  margin-top:3px;display:flex;align-items:center;gap:4px;
+}
+.modal-close{
+  min-width:38px;min-height:38px;
+  border-radius:50%;border:1.5px solid var(--ink);
+  background:var(--paper);color:var(--ink);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:18px;
+}
+.modal-body{
+  flex:1;overflow-y:auto;
+  padding:14px 18px calc(20px + env(safe-area-inset-bottom));
+}
+
+.section-title{
+  font-family:'Caveat',cursive;font-size:18px;font-weight:600;
+  letter-spacing:0;text-transform:none;color:var(--olive);
+  margin:18px 0 8px;display:flex;align-items:center;gap:8px;
+}
+.section-title:first-child{margin-top:0}
+.section-title::before{
+  content:"";flex-shrink:0;width:18px;height:1.5px;background:var(--red);
+}
+
+.why{
+  background:rgba(168,59,46,.06);
+  border:1px solid rgba(168,59,46,.2);
+  border-left:3px solid var(--red);
+  padding:10px 13px;border-radius:0;
+  font-family:'Source Serif 4',serif;font-size:14px;
+  color:var(--ink);line-height:1.45;font-style:italic;
+}
+.why em{font-style:normal;font-family:'Caveat',cursive;font-size:17px;color:var(--red);font-weight:600}
+
+.ingredients{list-style:none;padding:0;margin:0}
+.ingredients li{
+  display:flex;align-items:center;gap:12px;
+  padding:8px 0;border-bottom:1px dashed var(--line);
+  font-family:'Source Serif 4',serif;font-size:14.5px;
+}
+.ingredients li:last-child{border-bottom:none}
+.ing-check{
+  width:20px;height:20px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-size:11px;font-weight:700;
+  border:1.5px solid var(--ink);background:#fff;
+}
+.ing-check.have{background:var(--olive);color:#fff;border-color:var(--olive)}
+.ing-check.miss{background:#fff;color:var(--red);border-color:var(--red)}
+.ing-name{flex:1}
+.ing-qty{
+  color:var(--ink-soft);font-family:'Caveat',cursive;font-size:15px;
+  font-weight:500;
+}
+
+.recipe-step{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+.recipe-num{
+  font-family:'Caveat',cursive;font-style:normal;font-size:24px;
+  color:var(--red);flex-shrink:0;min-width:26px;line-height:1;font-weight:700;
+}
+.recipe-text{
+  font-family:'Source Serif 4',serif;font-size:14.5px;
+  line-height:1.5;color:var(--ink);padding-top:2px;
+}
+
+.feedback{margin-top:4px}
+.fb-row{display:flex;gap:6px;margin-bottom:8px}
+.fb-btn{
+  flex:1;min-height:48px;padding:6px 2px;border-radius:6px;
+  border:1.5px solid var(--line);background:var(--paper);
+  font-family:'Caveat',cursive;font-size:14px;font-weight:600;
+  cursor:pointer;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:0;color:var(--ink);
+}
+.fb-btn .emoji{font-size:20px}
+.fb-btn.active{background:var(--olive);color:var(--paper);border-color:var(--olive)}
+.fb-row.qty .fb-btn.active{background:var(--red);color:var(--paper);border-color:var(--red)}
+
+.note-input{
+  width:100%;border:1.5px solid var(--line);border-radius:6px;
+  padding:12px;font-family:'Caveat',cursive;font-size:18px;
+  background:#fff;color:var(--ink);resize:none;min-height:62px;
+  font-weight:500;line-height:1.3;
+}
+.note-input:focus{outline:none;border-color:var(--olive);background:#fff}
+.note-input::placeholder{font-style:italic;color:var(--pencil)}
+
+.alt-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:4px}
+.alt-btn{
+  padding:10px 8px;border-radius:6px;border:1.5px solid var(--line);
+  background:var(--paper);font-family:'Source Serif 4',serif;
+  cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:3px;
+  color:var(--ink);min-height:60px;
+}
+.alt-btn:active{background:var(--paper-2)}
+.alt-btn.selected{border-color:var(--olive);background:rgba(107,115,64,.06)}
+.alt-btn .alt-name{font-size:12.5px;font-weight:600;line-height:1.3}
+.alt-btn .alt-meta{font-family:'Caveat',cursive;font-size:13px;color:var(--ink-soft);font-weight:500}
+.alt-section{margin-top:6px}
+.alt-label{
+  font-family:'Caveat',cursive;font-size:15px;font-weight:600;
+  letter-spacing:0;text-transform:none;color:var(--olive);margin-bottom:6px;
+}
+.alt-search{
+  width:100%;border:1.5px solid var(--line);border-radius:6px;
+  padding:10px 12px;font-family:'Source Serif 4',serif;font-size:14px;
+  background:#fff;color:var(--ink);margin-bottom:10px;
+}
+.alt-search:focus{outline:none;border-color:var(--olive)}
+.alt-search::placeholder{font-style:italic;color:var(--pencil)}
+
+.feasibility{
+  display:inline-flex;align-items:center;gap:3px;
+  padding:0;border-radius:0;font-family:'Caveat',cursive;
+  font-size:13px;font-weight:600;letter-spacing:0;background:none!important;
+}
+.feasibility.full{color:var(--olive)}
+.feasibility.partial{color:var(--gold)}
+.feasibility.none{color:var(--red)}
+
+.edit-btn{
+  margin-top:12px;width:100%;min-height:46px;
+  padding:11px;border-radius:6px;
+  border:1.5px dashed var(--line);background:transparent;
+  font-family:'Caveat',cursive;font-size:16px;font-weight:600;
+  color:var(--olive);cursor:pointer;letter-spacing:0;
+}
+.restore-btn{
+  margin-top:8px;width:100%;padding:9px;border-radius:6px;
+  border:1px solid var(--line);background:transparent;
+  font-family:'Caveat',cursive;font-size:14px;font-weight:600;
+  color:var(--pencil);cursor:pointer;letter-spacing:0;text-transform:none;
+}
+.restore-btn:active{background:var(--paper-2)}
+/* BANNER INSTAL·LACIÓ */
+.install-banner{
+  position:fixed;
+  bottom:calc(76px + env(safe-area-inset-bottom));
+  left:10px;right:10px;
+  background:var(--ink);color:var(--paper);
+  border-radius:10px;padding:10px 12px;
+  display:flex;align-items:center;gap:10px;
+  box-shadow:0 4px 20px rgba(0,0,0,.25);
+  z-index:9; /* sota la tab bar (z-index:10) */
+  transform:translateY(calc(100% + 80px));
+  opacity:0;pointer-events:none;
+  transition:transform .35s cubic-bezier(0.32,0.72,0,1),opacity .25s;
+}
+.install-banner.show{
+  transform:translateY(0);
+  opacity:1;pointer-events:auto;
+}
+.install-banner.show{transform:translateY(0)}
+.install-banner-text{flex:1;font-family:'Caveat',cursive;font-size:16px;font-weight:600}
+.install-banner-text small{display:block;font-family:'Source Serif 4',serif;font-size:11px;font-weight:400;opacity:.75;margin-top:1px}
+.install-btn{background:var(--red);color:white;border:none;border-radius:8px;padding:8px 14px;font-family:'Caveat',cursive;font-size:15px;font-weight:700;cursor:pointer;white-space:nowrap}
+.install-close{background:none;border:none;color:rgba(255,255,255,.6);font-size:20px;cursor:pointer;padding:4px;line-height:1}
+
+/* TIQUET — botons càmera/fitxer */
+.upload-row{display:flex;gap:8px;margin-top:12px}
+.upload-opt{
+  flex:1;padding:14px 8px;border-radius:10px;
+  border:1.5px dashed var(--red);background:transparent;
+  font-family:'Caveat',cursive;font-size:16px;font-weight:600;
+  color:var(--red);cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+}
+.upload-opt span{font-size:24px}
+.upload-opt:active{background:rgba(168,59,46,.08)}
+
+/* PANTALLA REVISIÓ TIQUET */
+.review-overlay{
+  position:fixed;inset:0;background:var(--paper);z-index:40;
+  display:flex;flex-direction:column;overflow:hidden;
+  transform:translateY(100%);transition:transform .35s cubic-bezier(0.32,0.72,0,1);
+}
+.review-overlay.show{transform:translateY(0)}
+.review-header{
+  padding:calc(env(safe-area-inset-top) + 16px) 18px 14px;
+  background:var(--paper);border-bottom:1px solid var(--line);
+  flex-shrink:0;
+}
+.review-header h2{font-family:'Caveat',cursive;font-size:26px;font-weight:700;margin:0 0 2px;color:var(--ink)}
+.review-header p{font-family:'Source Serif 4',serif;font-style:italic;font-size:13px;color:var(--ink-soft);margin:0}
+.review-body{flex:1;overflow-y:auto;padding:14px 18px}
+.review-item{
+  display:flex;align-items:center;gap:12px;padding:10px 12px;
+  background:#fff;border:1.5px solid var(--line);border-radius:8px;margin-bottom:6px;
+  transition:opacity .2s,transform .2s;
+}
+.review-item.excluded{opacity:.4;transform:scale(.98)}
+.review-check{
+  width:26px;height:26px;border-radius:50%;border:2px solid var(--olive);
+  background:var(--olive);color:white;font-size:14px;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;
+}
+.review-check.off{background:transparent;color:transparent;border-color:var(--line)}
+.review-name{flex:1;font-family:'Source Serif 4',serif;font-size:14px}
+.review-qty{font-family:'Caveat',cursive;font-size:15px;color:var(--ink-soft);font-weight:500}
+.review-cat{font-size:10px;font-weight:700;letter-spacing:.1em;padding:2px 6px;border-radius:3px}
+.review-cat.fresc{background:rgba(74,143,90,.15);color:#3a7c4a}
+.review-cat.sec{background:rgba(200,152,96,.15);color:#9a7028}
+.review-cat.congelat{background:rgba(58,124,165,.15);color:#2a5878}
+.review-footer{
+  padding:12px 18px calc(16px + env(safe-area-inset-bottom));
+  background:var(--paper);border-top:1px solid var(--line);
+  display:flex;gap:8px;flex-shrink:0;
+}
+.review-cancel{
+  flex:1;padding:13px;border-radius:10px;border:1.5px solid var(--line);
+  background:transparent;font-family:'Caveat',cursive;font-size:18px;
+  font-weight:600;color:var(--ink-soft);cursor:pointer;
+}
+.review-confirm{
+  flex:2;padding:13px;border-radius:10px;border:none;
+  background:var(--ink);color:var(--paper);
+  font-family:'Caveat',cursive;font-size:18px;font-weight:700;cursor:pointer;
+}
+.review-loading{
+  display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:14px;height:100%;
+  font-family:'Caveat',cursive;font-size:20px;color:var(--ink-soft);
+}
+.review-loading .ptr-spinner{width:36px;height:36px;border-width:3px}
+
+/* ── TRANSICIONS ENTRE PESTANYES ───────────────────────────────── */
+.tab-pane{
+  animation:none;
+}
+.tab-pane.fade-in{
+  animation:paneFadeIn 150ms ease-out both;
+}
+@keyframes paneFadeIn{
+  from{opacity:0;transform:translateY(6px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ── SCALE PRESS — feedback tàctil visual ───────────────────────── */
+.meal{transition:background .12s,transform .12s}
+.meal:active{transform:scale(.98);background:rgba(212,205,184,.25)}
+.fb-btn{transition:background .12s,border-color .12s,transform .12s,color .12s}
+.fb-btn:active{transform:scale(.95)}
+.where-btn{transition:background .12s,color .12s,border-color .12s,transform .12s}
+.where-btn:active{transform:scale(.95)}
+.alt-btn{transition:background .12s,border-color .12s,transform .1s}
+.alt-btn:active{transform:scale(.97)}
+.today-card{transition:transform .12s,box-shadow .12s}
+.today-card:not(.empty):active{transform:rotate(-.4deg) scale(.98)}
+.tab{transition:color .15s,transform .1s}
+.tab:active{transform:scale(.92)}
+
+/* ── MODAL — corba Apple ────────────────────────────────────────── */
+.modal{
+  transition:transform .38s cubic-bezier(0.32,0.72,0,1);
+}
+.modal.open{transform:translateY(0)}
+
+/* ── SWIPE MODAL (drag to close) ────────────────────────────────── */
+.modal.dragging{transition:none}
+
+/* ── COMPRA — col·lapse animat ─────────────────────────────────── */
+.shop-item{
+  transition:opacity .22s ease, max-height .28s ease, margin-bottom .28s ease;
+  overflow:hidden;max-height:80px;
+}
+.shop-item.collapsing{
+  opacity:0;max-height:0;margin-bottom:0;padding-top:0;padding-bottom:0;
+}
+
+/* ── ESTRELLA FAVORIT — aparició animada ────────────────────────── */
+.fav-star{
+  display:inline-block;
+  animation:starPop .35s cubic-bezier(.34,1.56,.64,1) both;
+}
+@keyframes starPop{
+  from{transform:scale(0) rotate(-30deg);opacity:0}
+  to{transform:scale(1) rotate(0deg);opacity:1}
+}
+
+/* ── FEEDBACK SATISFACCIÓ — bounce ──────────────────────────────── */
+.fb-btn.active{animation:btnActivate .25s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes btnActivate{
+  from{transform:scale(.9)}
+  to{transform:scale(1)}
+}
+
+/* ── PULL TO REFRESH ────────────────────────────────────────────── */
+.ptr-indicator{
+  position:absolute;top:0;left:0;right:0;
+  display:flex;align-items:center;justify-content:center;
+  height:0;overflow:hidden;
+  font-family:'Caveat',cursive;font-size:16px;color:var(--olive);
+  font-weight:600;transition:height .2s;z-index:2;
+}
+.ptr-indicator.pulling{height:48px}
+.ptr-spinner{
+  width:18px;height:18px;border:2px solid var(--line);
+  border-top-color:var(--olive);border-radius:50%;
+  margin-right:8px;
+}
+.ptr-spinner.spin{animation:spin .6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── SWIPE-TO-CHECK (llista compra) ─────────────────────────────── */
+.shop-item{position:relative}
+.shop-swipe-bg{
+  position:absolute;right:0;top:0;bottom:0;
+  background:var(--olive);border-radius:6px;
+  display:flex;align-items:center;padding-right:14px;
+  color:white;font-size:18px;opacity:0;
+  transition:opacity .15s;pointer-events:none;
+}
+.shop-item.swiping .shop-swipe-bg{opacity:1}
+
+
+/* CARRUSEL DE SETMANES */
+.week-carousel{
+  display:flex;overflow-x:scroll;overflow-y:hidden;
+  scroll-snap-type:x mandatory;
+  overscroll-behavior-x:contain;
+  touch-action:pan-x pan-y;
+  
+  scrollbar-width:none;height:100%;
+  scroll-behavior:auto; /* no smooth - ha de respondre al dit */
+}
+.week-carousel::-webkit-scrollbar{display:none}
+.week-carousel{scrollbar-width:none}
+.week-slot{
+  flex:0 0 100%;scroll-snap-align:center;
+  overflow-y:auto;overflow-x:hidden;
+  overscroll-behavior:contain;
+  
+  padding:14px 14px calc(80px + env(safe-area-inset-bottom)) 56px;
+}
+
+/* BOTÓ AVUI */
+.btn-today{
+  display:none; /* ocult per defecte */
+  padding:4px 10px;
+  border:1.5px solid var(--red);border-radius:20px;
+  background:transparent;font-family:'Caveat',cursive;
+  font-size:14px;font-weight:600;color:var(--red);
+  cursor:pointer;white-space:nowrap;flex-shrink:0;
+}
+.btn-today.visible{display:block}
+.btn-today:active{background:rgba(168,59,46,.1)}
+
+/* SKELETON LOADING */
+@keyframes shimmer{
+  0%{background-position:-400px 0}
+  100%{background-position:400px 0}
+}
+.skeleton{
+  background:linear-gradient(90deg,var(--line) 25%,rgba(212,205,184,.4) 50%,var(--line) 75%);
+  background-size:800px 100%;
+  animation:shimmer 1.4s ease-in-out infinite;
+  border-radius:6px;
+}
+.skel-day{background:transparent;border-bottom:1px solid var(--line);padding:20px 0;margin-bottom:20px}
+.skel-head{height:22px;width:120px;margin-bottom:12px}
+.skel-meal{display:flex;gap:12px;align-items:center;padding:8px 0}
+.skel-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0}
+.skel-text{flex:1;height:14px;border-radius:4px}
+.skel-text.short{max-width:140px}
+
+/* ON MENGEM */
+.where-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.where-btn{
+  padding:8px 12px;border-radius:6px;border:1.5px solid var(--line);
+  background:var(--paper);font-family:'Caveat',cursive;font-size:16px;
+  font-weight:600;cursor:pointer;color:var(--ink);flex-shrink:0;
+}
+.where-btn.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.where-btn:active{opacity:.8}
+.where-input{
+  width:100%;border:1.5px solid var(--line);border-radius:6px;
+  padding:10px 12px;font-family:'Caveat',cursive;font-size:17px;
+  background:#fff;color:var(--ink);margin-bottom:4px;
+}
+.where-input:focus{outline:none;border-color:var(--olive)}
+.where-input::placeholder{font-style:italic;color:var(--pencil)}
+
+
+.tab-pane{display:none}
+.tab-pane.active{display:block;flex:1;min-height:0}
+.tab-pane.active{flex:1;min-height:0}
+#pane-week.active{display:flex !important;flex-direction:column;overflow:hidden}
+.cat-title{
+  font-family:'Caveat',cursive;font-size:18px;font-weight:600;
+  letter-spacing:0;text-transform:none;color:var(--olive);
+  margin:14px 0 6px;
+}
+.cat-title:first-child{margin-top:2px}
+.inv-item{
+  display:flex;align-items:center;gap:10px;
+  min-height:46px;padding:8px 12px;
+  background:#fff;border:1.5px solid var(--line);
+  border-radius:6px;margin-bottom:6px;
+}
+.inv-name{flex:1;font-size:14px;font-family:'Source Serif 4',serif}
+.inv-qty{font-family:'Caveat',cursive;font-size:15px;color:var(--ink-soft);font-weight:500}
+.inv-btn{
+  min-width:36px;min-height:36px;
+  border-radius:50%;border:1.5px solid var(--ink);
+  background:var(--paper);font-size:16px;color:var(--ink);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+}
+
+.shop-item{
+  display:flex;align-items:center;gap:12px;
+  min-height:46px;padding:8px 12px;
+  background:#fff;border:1.5px solid var(--line);
+  border-radius:6px;margin-bottom:6px;
+}
+.shop-check{
+  min-width:24px;min-height:24px;border-radius:50%;
+  border:2px solid var(--red);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  background:transparent;color:#fff;font-size:14px;
+  flex-shrink:0;
+}
+.shop-check.done{background:var(--olive);border-color:var(--olive)}
+.shop-name{flex:1;font-size:14px;font-family:'Source Serif 4',serif}
+.shop-item.done .shop-name{text-decoration:line-through;color:var(--pencil)}
+.shop-qty{font-family:'Caveat',cursive;font-size:15px;color:var(--ink-soft);font-weight:500}
+
+.section-intro{
+  font-family:'Source Serif 4',serif;font-style:italic;
+  font-size:14px;color:var(--ink-soft);margin-bottom:12px;line-height:1.4;
+}
+.upload-btn{
+  width:100%;min-height:48px;padding:12px;border-radius:6px;
+  border:1.5px dashed var(--red);background:transparent;
+  font-family:'Caveat',cursive;font-size:16px;font-weight:600;
+  color:var(--red);cursor:pointer;margin-top:12px;
+}
+
+/* MES VIEW */
+.month-header{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:4px}
+.month-dow{
+  text-align:center;font-family:'Caveat',cursive;font-size:14px;
+  font-weight:600;letter-spacing:0;text-transform:none;
+  color:var(--ink-soft);padding:4px 0;
+}
+.month-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.month-day{
+  background:#fff;border:1.5px solid var(--line);
+  border-radius:4px;padding:5px 3px;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+  min-height:54px;
+}
+.month-day:active{background:var(--paper-2)}
+.month-day.today{border-color:var(--red);border-width:2px}
+.month-day.empty{background:transparent;border-color:transparent;cursor:default}
+.month-day.festiu{opacity:.45}
+.month-day-num{
+  font-family:'Caveat',cursive;font-size:16px;font-weight:600;
+  color:var(--ink);line-height:1;
+}
+.month-day.today .month-day-num{color:var(--red)}
+.month-dots{display:flex;gap:2px;flex-wrap:wrap;justify-content:center}
+.month-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.dot-lunch{background:var(--olive)}
+.dot-dinner{background:var(--red)}
+.dot-fb{background:var(--gold)}
+
+/* STATS */
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.stat-card{
+  background:#fff;border:1.5px solid var(--line);border-radius:6px;
+  padding:12px 10px;text-align:center;position:relative;transform:rotate(-.2deg);
+}
+.stat-card:nth-child(2n){transform:rotate(.3deg)}
+.stat-num{
+  font-family:'Caveat',cursive;font-size:36px;font-weight:700;
+  color:var(--red);line-height:.95;
+}
+.stat-label{
+  font-family:'Source Serif 4',serif;font-style:italic;
+  font-size:11px;color:var(--ink-soft);margin-top:4px;
+  letter-spacing:0;text-transform:none;font-weight:400;
+}
+.bar-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.bar-label{font-family:'Source Serif 4',serif;font-size:13px;color:var(--ink);min-width:80px}
+.bar-track{flex:1;height:10px;background:rgba(212,205,184,.5);border-radius:0;overflow:hidden;border:1px solid var(--line)}
+.bar-fill{height:100%;border-radius:0;transition:width .4s ease}
+.bar-count{font-family:'Caveat',cursive;font-size:16px;color:var(--ink);min-width:24px;text-align:right;font-weight:700}
+
+/* LOGIN */
+.login{
+  position:fixed;inset:0;background:var(--paper);
+  background-image:repeating-linear-gradient(0deg, transparent, transparent 31px, rgba(180,150,100,.07) 31px, rgba(180,150,100,.07) 32px);
+  z-index:50;display:flex;align-items:center;justify-content:center;
+  padding:24px;
+}
+.login::before{
+  content:"";position:absolute;left:42px;top:0;bottom:0;width:1px;
+  background:var(--red);opacity:.3;
+}
+.login-card{
+  background:#fff;border:1.5px solid var(--ink);
+  border-radius:4px;padding:28px 22px;width:100%;max-width:360px;
+  box-shadow:3px 4px 0 rgba(42,38,32,.15);position:relative;
+  transform:rotate(-.5deg);
+}
+.login-card::before{
+  content:"";position:absolute;top:-9px;left:30px;width:60px;height:18px;
+  background:rgba(255,200,80,.55);border-radius:2px;
+  transform:rotate(-3deg);box-shadow:1px 1px 2px rgba(0,0,0,.08);
+}
+.login-card h1{
+  font-family:'Caveat',cursive;font-size:42px;font-weight:700;
+  margin:0 0 6px;letter-spacing:0;color:var(--ink);line-height:.95;
+}
+.login-card h1 em{
+  font-style:normal;color:var(--red);
+  text-decoration:underline;text-decoration-color:var(--olive);
+  text-decoration-thickness:2.5px;text-underline-offset:5px;
+}
+.login-card p{
+  margin:14px 0 18px;font-family:'Source Serif 4',serif;
+  font-style:italic;font-size:14px;color:var(--ink-soft);line-height:1.4;
+}
+.login-input{
+  width:100%;border:1.5px solid var(--line);border-radius:6px;
+  padding:14px;font-family:'Source Serif 4',serif;font-size:15px;
+  background:var(--paper);color:var(--ink);margin-bottom:10px;
+  -webkit-appearance:none;
+}
+.login-input:focus{outline:none;border-color:var(--olive);background:#fff}
+.login-btn{
+  width:100%;min-height:48px;padding:14px;
+  border-radius:6px;border:1.5px solid var(--ink);
+  background:var(--ink);color:var(--paper);
+  font-family:'Caveat',cursive;font-size:20px;font-weight:600;
+  cursor:pointer;-webkit-appearance:none;letter-spacing:0;
+}
+.login-btn:active{opacity:.85}
+.login-err{
+  font-family:'Caveat',cursive;font-size:15px;color:var(--red);
+  margin-top:8px;min-height:18px;font-weight:500;
+}
+
+.toast{
+  position:fixed;bottom:calc(80px + env(safe-area-inset-bottom));
+  left:50%;transform:translateX(-50%) translateY(10px);
+  background:var(--ink);color:var(--paper);
+  padding:10px 18px;border-radius:6px;
+  font-family:'Caveat',cursive;font-size:16px;font-weight:600;
+  opacity:0;transition:all .2s;z-index:30;
+  pointer-events:none;white-space:nowrap;
+  border:1.5px solid var(--ink);
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.error{background:var(--red);border-color:var(--red)}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login" id="login">
+  <div class="login-card">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+      <svg width="38" height="38" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="21" cy="24" rx="15" ry="10.5" fill="#faf6ed" stroke="#2a2620" stroke-width="2"/>
+        <ellipse cx="21" cy="24" rx="10.5" ry="7" fill="none" stroke="#2a2620" stroke-width="1.2"/>
+        <circle cx="21" cy="24" r="3" fill="#a83b2e"/>
+        <line x1="8" y1="6" x2="8" y2="14" stroke="#6b7340" stroke-width="2" stroke-linecap="round"/>
+        <line x1="8" y1="14" x2="8" y2="34" stroke="#6b7340" stroke-width="2" stroke-linecap="round"/>
+        <path d="M34 6 Q36.5 9 36.5 13 Q36.5 16 34 17 L34 34" stroke="#2a2620" stroke-width="2" stroke-linecap="round" fill="none"/>
+      </svg>
+      <h1 style="margin:0">Àpats <em>Aina</em></h1>
+    </div>
+    <p style="font-family:'Caveat',cursive;font-size:18px;font-style:normal;font-weight:500;color:#a83b2e">~ el meu quadern de cuina ~</p><p>Introdueix el teu token de GitHub per sincronitzar entre mòbils.</p>
+    <input type="password" class="login-input" id="login-key" placeholder="Clau" autocomplete="off">
+    <button class="login-btn" id="login-btn">Entrar</button>
+    <div class="login-err" id="login-err"></div>
+  </div>
+</div>
+
+<div id="app" style="display:none">
+<header>
+  <div class="brand">
+    <div class="brand-left">
+      <div>
+        <div class="logo">
+          <svg class="logo-icon" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="21" cy="24" rx="15" ry="10.5" fill="#fff" stroke="#2a2620" stroke-width="2"/>
+            <ellipse cx="21" cy="24" rx="10.5" ry="7" fill="none" stroke="#2a2620" stroke-width="1.2"/>
+            <circle cx="21" cy="24" r="3" fill="#a83b2e"/>
+            <line x1="8" y1="6" x2="8" y2="14" stroke="#6b7340" stroke-width="2" stroke-linecap="round"/>
+            <line x1="8" y1="14" x2="8" y2="34" stroke="#6b7340" stroke-width="2" stroke-linecap="round"/>
+            <path d="M34 6 Q36.5 9 36.5 13 Q36.5 16 34 17 L34 34" stroke="#2a2620" stroke-width="2" stroke-linecap="round" fill="none"/>
+          </svg>
+          <div class="logo-text">
+            <div class="logo-title">Àpats <em>Aina</em></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="head-actions">
+      <button class="head-btn" id="share-btn" title="Compartir setmana">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
+      </button>
+      <button class="head-btn" id="logout-btn" title="Tancar sessió">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+      </button>
+      <div class="sync" id="sync-status" role="status" aria-live="polite" aria-atomic="true">OK</div>
+    </div>
+  </div>
+  <div class="view-toggle" id="view-toggle">
+    <button class="view-btn active" data-view="week">Setmana</button>
+    <button class="view-btn" data-view="month">Mes</button>
+  </div>
+  <div class="weeknav" id="weeknav-bar">
+    <div class="weekrange" id="week-label">—<small>Setmana —</small></div>
+  </div>
+  <button class="btn-today" id="btn-today" aria-label="Tornar a la setmana actual">avui →</button>
+</header>
+
+<main>
+  <section class="tab-pane active" id="pane-week">
+    <div class="week-carousel" id="week-carousel">
+      <div class="week-slot" id="slot-prev"></div>
+      <div class="week-slot" id="slot-curr"></div>
+      <div class="week-slot" id="slot-next"></div>
+    </div>
+  </section>
+  <section class="tab-pane" id="pane-month"></section>
+  <section class="tab-pane" id="pane-inv">
+    <p class="section-intro">El que tens a casa avui. Toca + o − per ajustar.</p>
+    <div id="inv-list"></div>
+    <div class="upload-row">
+      <button class="upload-opt" id="upload-camera">
+        <span>📷</span>Càmera
+      </button>
+      <button class="upload-opt" id="upload-file">
+        <span>📄</span>Fitxer / PDF
+      </button>
+    </div>
+  </section>
+  <section class="tab-pane" id="pane-shop">
+    <p class="section-intro">Generada a partir dels sopars de la setmana i l'estoc actual.</p>
+    <div id="shop-list"></div>
+  </section>
+  <section class="tab-pane" id="pane-stats">
+    <div id="stats-content"></div>
+  </section>
+</main>
+
+<nav class="tabs">
+  <button class="tab active" data-pane="week">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>
+    SETMANA
+  </button>
+  <button class="tab" data-pane="inv">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 8h14l-1.5 11a2 2 0 0 1-2 1.8h-7a2 2 0 0 1-2-1.8L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+    REBOST
+  </button>
+  <button class="tab" data-pane="shop">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 5h2l2.5 11h11l2.5-8H6"/><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg>
+    COMPRA
+  </button>
+  <button class="tab" data-pane="stats">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+    RESUM
+  </button>
+</nav>
+</div>
+
+<div class="modal-bg" id="modal-bg"></div>
+<div class="modal" id="modal">
+  <div class="modal-grip"></div>
+  <div class="modal-head">
+    <div class="modal-head-info">
+      <div class="modal-kicker" id="m-kicker">—</div>
+      <div class="modal-title" id="m-title">—</div>
+      <div class="modal-time" id="m-time"></div>
+    </div>
+    <button class="modal-close" id="m-close">×</button>
+  </div>
+  <div class="modal-body" id="m-body"></div>
+</div>
+
+<!-- Banner instal·lació PWA -->
+<div class="install-banner" id="install-banner">
+  <div class="install-banner-text">
+    Instal·la l'app
+    <small>Accés ràpid des de la pantalla d'inici</small>
+  </div>
+  <button class="install-btn" id="install-btn">Instal·la</button>
+  <button class="install-close" id="install-close">×</button>
+</div>
+
+<!-- Overlay revisió tiquet -->
+<div class="review-overlay" id="review-overlay">
+  <div class="review-header">
+    <h2>Revisar tiquet</h2>
+    <p id="review-subtitle">Selecciona els productes a afegir al rebost</p>
+  </div>
+  <div class="review-body" id="review-body">
+    <div class="review-loading">
+      <div class="ptr-spinner spin"></div>
+      Analitzant tiquet...
+    </div>
+  </div>
+  <div class="review-footer">
+    <button class="review-cancel" id="review-cancel">Cancel·la</button>
+    <button class="review-confirm" id="review-confirm">Afegir al rebost</button>
+  </div>
+</div>
+
+<!-- Inputs fitxer ocults -->
+<input type="file" id="file-camera" accept="image/*" capture="environment" style="display:none">
+<input type="file" id="file-picker" accept="image/*,application/pdf" style="display:none">
+
+<div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true"></div>
+
+<script>
+/* ======================================================================
+   DADES ESTÀTIQUES (codi)
+   ====================================================================== */
+
+// Menú escolar de maig 2026, amb categorització de cada dinar
+// per poder triar sopars complementaris.
+const SCHOOL_MENUS = {
+  "2026-05-01": { festiu: true },
+  "2026-05-04": { text: "Fideuà de peix · Hamburguesa mixta al forn · Fruita", cats: ["peix","pasta","carn"] },
+  "2026-05-05": { text: "Paella amb verdures · Filet de lluç al forn · Iogurt", cats: ["arros","verdura","peix"] },
+  "2026-05-06": { text: "Crema de carbassó natural amb crostons · Cigrons guisats amb ou dur · Fruita", cats: ["verdura","llegum","ou"] },
+  "2026-05-07": { text: "Mongeta tendra amb patates · Tires de pollastre amb mel · Iogurt", cats: ["verdura","patata","carn"] },
+  "2026-05-08": { text: "Llenties estofades amb arròs integral · Croquetes de pernil · Fruita", cats: ["llegum","arros","carn"] },
+  "2026-05-11": { text: "Crema de carbassa · Filet d'agulla de porc al forn · Fruita", cats: ["verdura","carn"] },
+  "2026-05-12": { text: "Paella amb calamars · Fricandó de llibret · Iogurt", cats: ["arros","peix","carn"] },
+  "2026-05-13": { text: "Mongetes blanques estofades · Ous durs amb tomàquet i beixamel · Fruita", cats: ["llegum","ou"] },
+  "2026-05-14": { text: "Pèsols saltejats amb pernil · Pollastre rostit · Iogurt", cats: ["llegum","carn"] },
+  "2026-05-15": { text: "Espirals integrals napolitana · Salmó al forn amb herbes · Fruita", cats: ["pasta","peix"] },
+  "2026-05-18": { text: "Arròs amb tomàquet i orenga · Mandonguilles de lluç a la jardinera · Gelat o iogurt", cats: ["arros","peix","verdura"] },
+  "2026-05-19": { text: "Amanida campera · Pollastre amb allada · Iogurt", cats: ["verdura","carn"] },
+  "2026-05-20": { text: "Crema de pastanaga · Cigrons amb samfaina i ou cuit · Fruita", cats: ["verdura","llegum","ou"] },
+  "2026-05-21": { text: "Espaguetis napolitana · Estofat de porc · Iogurt", cats: ["pasta","carn"] },
+  "2026-05-22": { text: "Empedrat de mongeta blanca · Remenat d'ou amb xampinyons · Fruita", cats: ["llegum","ou"] },
+  "2026-05-25": { festiu: true },
+  "2026-05-26": { text: "Bròquil gratinat · Pollastre amb llimona · Iogurt", cats: ["verdura","carn"] },
+  "2026-05-27": { text: "Macarrons integrals amb tomàquet i formatge · Lluç al forn amb oli i pebre vermell · Fruita", cats: ["pasta","peix"] },
+  "2026-05-28": { text: "Arròs tres delícies · Ous durs amb tomàquet i formatge · Iogurt", cats: ["arros","ou"] },
+  "2026-05-29": { text: "Crema de porro i carbassó · Cigrons amb verdura, quinoa i pollastre · Fruita", cats: ["verdura","llegum","carn"] }
+};
+
+// Receptes — SENSE mantega. time = minuts preparació.
+// cats: categories nutricionals per al filtre d'alternatives.
+const RECIPES = {
+  // ── PEIX ─────────────────────────────────────────────────────────────
+  "salmo-arros": {
+    name:"Salmó al forn amb arròs",cats:["peix","arros"],time:20,
+    ingredients:[{n:"Llom de salmó",q:"80g"},{n:"Arròs rodó",q:"50g"},{n:"Oli d'oliva",q:"1 cs"},{n:"Llimona",q:"unes gotes"}],
+    steps:["Bullir l'arròs 16-18 min en aigua salada.","Forn 180°. Salmó en safata amb oli, 12 min.","Comprovar que NO queda cap espina.","Esmicolat sobre l'arròs amb gotes de llimona."]
+  },
+  "lluc-patata": {
+    name:"Lluç al vapor amb patata",cats:["peix","patata"],time:20,
+    ingredients:[{n:"Filet de lluç",q:"80g"},{n:"Patata",q:"1 mitjana"},{n:"Oli d'oliva",q:"2 cs"},{n:"All",q:"½ gra"},{n:"Julivert",q:"un toc"}],
+    steps:["Bullir la patata pelada a daus, 15 min.","Coure lluç al vapor 5 min. Comprovar espines.","Aixafar patata amb oli, all i julivert.","Servir el peix sobre el puré, sense pell."]
+  },
+  "peix-verdura": {
+    name:"Peix blanc al forn amb verdureta",cats:["peix","verdura"],time:20,
+    ingredients:[{n:"Filet de peix blanc",q:"80g"},{n:"Carbassó",q:"½"},{n:"Pastanaga",q:"1"},{n:"Oli d'oliva",q:"2 cs"}],
+    steps:["Forn 180°. Verdures a làmines fines amb oli, 15 min.","Posar el peix sobre les verdures, 8 min més.","Comprovar espines. Servir tot junt."]
+  },
+  "mongetes-tonyina": {
+    name:"Mongetes blanques amb tonyina",cats:["llegum","peix"],time:10,
+    ingredients:[{n:"Mongetes blanques cuites",q:"100g"},{n:"Tonyina al natural",q:"½ llauna"},{n:"Tomàquet madur",q:"1"},{n:"Oli d'oliva",q:"1 cs"}],
+    steps:["Esbandir les mongetes.","Pelar el tomàquet i tallar a daus petits.","Barrejar tot amb oli. Sal suau. Servir tebi."]
+  },
+  "pasta-tonyina": {
+    name:"Pasta amb tomàquet i tonyina",cats:["pasta","peix"],time:15,
+    ingredients:[{n:"Pasta petita",q:"50g"},{n:"Tomàquet triturat",q:"3 cs"},{n:"Tonyina al natural",q:"½ llauna"},{n:"Oli d'oliva",q:"1 cs"}],
+    steps:["Bullir la pasta segons paquet.","Escalfar tomàquet amb oli 5 min a foc baix.","Afegir tonyina escorreguda, barrejar.","Combinar amb la pasta."]
+  },
+  "bacalla-tomquet": {
+    name:"Bacallà a la tomàquet",cats:["peix","verdura"],time:20,
+    ingredients:[{n:"Bacallà dessalat",q:"80g"},{n:"Tomàquet madur",q:"2"},{n:"All",q:"1 gra"},{n:"Oli d'oliva",q:"2 cs"}],
+    steps:["Sofregir all picat amb oli.","Afegir tomàquet tallat, cuinar 8 min.","Afegir bacallà en làmines, 5 min.","Comprovar espines. Servir amb pa."]
+  },
+  "salmo-espinacs": {
+    name:"Salmó amb espinacs saltats",cats:["peix","verdura"],time:15,
+    ingredients:[{n:"Llom de salmó",q:"80g"},{n:"Espinacs",q:"un grapat"},{n:"All",q:"1 gra"},{n:"Oli d'oliva",q:"1 cs"}],
+    steps:["Saltejar all amb espinacs 4 min. Reservar.","Planxa amb oli, salmó 3 min per banda.","Comprovar espines. Servir sobre espinacs."]
+  },
+  "verat-patata": {
+    name:"Verat al forn amb patata",cats:["peix","patata"],time:25,
+    ingredients:[{n:"Filet de verat",q:"80g"},{n:"Patata",q:"1 mitjana"},{n:"Oli d'oliva",q:"2 cs"},{n:"Orenga",q:"un toc"}],
+    steps:["Forn 180°. Patata a rodanxes amb oli, 15 min.","Posar el verat sobre la patata, 10 min.","Comprovar espines. El verat és molt saborós."]
+  },
+  "croquetes-peix": {
+    name:"Croquetes de peix",cats:["peix"],time:30,
+    ingredients:[{n:"Peix bullit (lluç o bacallà)",q:"100g"},{n:"Farina",q:"3 cs"},{n:"Llet",q:"150ml"},{n:"Pa ratllat",q:"per arrebossar"},{n:"Ou",q:"1"},{n:"Oli de gira-sol",q:"per fregir"}],
+    steps:["Fer beixamel: sofregir farina amb oli, afegir llet poc a poc remenant.","Incorporar el peix esmicolat (sense espines). Deixar refredar.","Formar croquetes, passar per ou i pa ratllat.","Fregir fins que siguin daurades. Escórrer bé."]
+  },
+  "panga-carbasso": {
+    name:"Panga al vapor amb carbassó",cats:["peix","verdura"],time:15,
+    ingredients:[{n:"Filet de panga",q:"80g"},{n:"Carbassó",q:"1 petit"},{n:"Oli d'oliva",q:"1 cs"},{n:"Llimona",q:"unes gotes"}],
+    steps:["Carbassó a daus, vapor 8 min.","Panga al vapor 6 min.","Servir amb oli i llimona."]
+  },
+  "gambes-arros": {
+    name:"Arròs amb gambes",cats:["peix","arros"],time:20,
+    ingredients:[{n:"Gambes pelades (congelades)",q:"6-8"},{n:"Arròs rodó",q:"50g"},{n:"All",q:"1 gra"},{n:"Oli d'oliva",q:"1 cs"},{n:"Pebre vermell dolç",q:"un toc"}],
+    steps:["Bullir arròs 16 min.","Saltejar all picat amb les gambes 3 min.","Afegir pebre vermell. Barrejar amb l'arròs."]
+  },
+  "lluc-beixamel": {
+    name:"Lluç amb beixamel de verdures",cats:["peix","verdura"],time:25,
+    ingredients:[{n:"Filet de lluç",q:"80g"},{n:"Farina",q:"1 cs"},{n:"Llet",q:"100ml"},{n:"Oli d'oliva",q:"1 cs"},{n:"Pèsols",q:"2 cs"}],
+    steps:["Cuinar lluç a la planxa. Reservar.","Fer beixamel lleugera amb oli, farina i llet.","Afegir pèsols cuits. Servir sobre el peix.","Comprovar espines."]
+  },
+
+  // ── CARN ─────────────────────────────────────────────────────────────
+  "pollastre-pastanaga": {
+    name:"Pollastre al forn amb pastanagues",cats:["carn","verdura"],time:35,
+    ingredients:[{n:"Cuixa de pollastre desossada",q:"1 petita"},{n:"Pastanagues",q:"2"},{n:"Oli d'oliva",q:"2 cs"},{n:"Herbes (orenga, farigola)",q:"al gust"}],
+    steps:["Forn 180°. Pastanaga a bastonets amb oli i herbes.","Pollastre al costat, 25-30 min.","Tallar a tires per facilitar menjar."]
+  },
+  "verdura-pollastre": {
+    name:"Verdura bullida amb pollastre planxa",cats:["carn","verdura"],time:20,
+    ingredients:[{n:"Mongeta tendra o bròquil",q:"un grapat"},{n:"Patata",q:"1 petita"},{n:"Pit de pollastre",q:"60g"},{n:"Oli d'oliva",q:"1 cs"}],
+    steps:["Bullir verdura i patata 12 min.","Pollastre a la planxa, tallar a tires.","Servir amb raig d'oli cru."]
+  },
+  "pollastre-llimona": {
+    name:"Pollastre a la llimona",cats:["carn"],time:30,
+    ingredients:[{n:"Cuixes de pollastre",q:"2 petites"},{n:"Llimona",q:"1"},{n:"All",q:"2 grans"},{n:"Oli d'oliva",q:"2 cs"},{n:"Farigola",q:"al gust"}],
+    steps:["Forn 180°. Pollastre en safata amb all, llimona i oli.","30 min, regant de tant en tant.","Desossar bé abans de servir."]
+  },
+  "vedella-pastanaga": {
+    name:"Guisat de vedella amb pastanaga",cats:["carn","verdura"],time:40,
+    ingredients:[{n:"Vedella tendra a daus",q:"80g"},{n:"Pastanaga",q:"2"},{n:"Patata",q:"1"},{n:"Ceba",q:"½"},{n:"Oli d'oliva",q:"1 cs"}],
+    steps:["Sofregir ceba i vedella fins daurar.","Afegir pastanaga i patata a daus, cobrir d'aigua.","Coure 30 min a foc baix. Triturar una mica si cal."]
+  },
+  "fetge-ceba": {
+    name:"Fetge de pollastre amb ceba",cats:["carn","verdura"],time:15,
+    ingredients:[{n:"Fetge de pollastre",q:"80g"},{n:"Ceba",q:"1 petita"},{n:"Oli d'oliva",q:"1 cs"},{n:"All",q:"1 gra"}],
+    steps:["Sofregir ceba a foc baix 8 min fins daurar.","Afegir fetge tallat a trossets, 4 min.","Molt ric en ferro. Servir ben cuinat."]
+  },
+  "mandonguilles-tomquet": {
+    name:"Mandonguilles en salsa de tomàquet",cats:["carn","verdura"],time:30,
+    ingredients:[{n:"Carn picada (porc i vedella)",q:"100g"},{n:"Pa ratllat",q:"1 cs"},{n:"Ou",q:"½"},{n:"Tomàquet triturat",q:"150ml"},{n:"All",q:"1 gra"},{n:"Oli d'oliva",q:"1 cs"}],
+    steps:["Barrejar carn, pa ratllat i ou. Formar mandonguilles.","Daurar les mandonguilles en oli.","Afegir tomàquet i all, coure 15 min a foc baix."]
+  },
+  "gall-dindi-verdura": {
+    name:"Gall d'indi amb verdures",cats:["carn","verdura"],time:20,
+    ingredients:[{n:"Pit de gall d'indi",q:"80g"},{n:"Carbassó",q:"½"},{n:"Pebrot vermell",q:"½"},{n:"Oli d'oliva",q:"1 cs"}],
+    steps:["Tallar verdures a daus petits, sofregir 8 min.","Gall d'indi a tires a la planxa 5 min.","Barrejar. Suau i digestiu."]
+  },
+  "hamburguesa-casolana": {
+    name:"Hamburguesa casolana al forn",cats:["carn"],time:20,
+    ingredients:[{n:"Carn picada",q:"80g"},{n:"Ceba",q:"1 cs picada"},{n:"Pa ratllat",q:"1 cs"},{n:"Oli d'oliva",q:"un raig"}],
+    steps:["Barrejar carn, ceba i pa ratllat. Salar suau.","Formar una hamburguesa no massa grossa.","Forn 180° 15 min o planxa 4 min per banda."]
+  },
+  "pollastre-curri": {
+    name:"Pollastre al curri suau",cats:["carn","verdura"],time:25,
+    ingredients:[{n:"Pit de pollastre",q:"80g"},{n:"Llet de coco",q:"50ml"},{n:"Curri suau",q:"½ culleradeta"},{n:"Pastanaga",q:"1"},{n:"Oli d'oliva",q:"1 cs"}],
+    steps:["Sofregir pollastre a daus 5 min.","Afegir pastanaga, llet de coco i curri.","Coure 15 min. Curri molt suau, apte per als més petits."]
+  },
+  "botifarra-mongetes": {
+    name:"Botifarra a la planxa amb mongetes",cats:["carn","llegum"],time:15,
+    ingredients:[{n:"Botifarra fresca",q:"½ petita"},{n:"Mongetes blanques cuites",q:"80g"},{n:"All",q:"1 gra"},{n:"Oli d'oliva",q:"1 cs"},{n:"Julivert",q:"un toc"}],
+    steps:["Cuinar la botifarra a la planxa 4 min per banda.","Saltejar mongetes amb all i oli 3 min.","Servir junts amb julivert picat."]
+  },
+  "pit-pollastre-salsa": {
+    name:"Pit de pollastre en salsa de verdures",cats:["carn","verdura"],time:20,
+    ingredients:[{n:"Pit de pollastre",q:"80g"},{n:"Tomàquet",q:"1"},{n:"Pebrot",q:"½"},{n:"Ceba",q:"¼"},{n:"Oli d'oliva",q:"1 cs"}],
+    steps:["Sofregir ceba i pebrot 5 min.","Afegir tomàquet, cuinar 8 min.","Incorporar pollastre a tires, 5 min més."]
+  },
+
+  // ── OUS ──────────────────────────────────────────────────────────────
+  "truita-carbasso": {
+    name:"Truita de carbassó amb amanida",cats:["ou","verdura"],time:10,
+    ingredients:[{n:"Carbassó",q:"1 petit"},{n:"Ous",q:"2"},{n:"Oli d'oliva",q:"1 cs"},{n:"Enciam",q:"un grapat"},{n:"Tomàquet cherry",q:"4-5"}],
+    steps:["Carbassó a daus, sofregir 5 min.","Batre ous, afegir carbassó i sal.","Truita a foc baix pels dos costats.","Servir amb enciam i tomàquet."]
+  },
+  "ou-bledes": {
+    name:"Ou poché amb bledes saltejades",cats:["ou","verdura"],time:12,
+    ingredients:[{n:"Ou",q:"1"},{n:"Bledes",q:"un grapat"},{n:"All",q:"1 gra"},{n:"Oli d'oliva",q:"1 cs"}],
+    steps:["Saltejar all picat amb bledes 6-7 min.","Ou poché en aigua amb vinagre, 3 min.","Servir l'ou sobre les bledes."]
+  },
+  "arros-truita": {
+    name:"Arròs blanc amb truita francesa",cats:["arros","ou"],time:20,
+    ingredients:[{n:"Arròs",q:"50g"},{n:"Ou",q:"1"},{n:"Oli d'oliva",q:"1 cs"}],
+    steps:["Bullir arròs 16 min en aigua salada.","Truita fina a la paella.","Servir junts amb un raig d'oli."]
+  },
+  "truita-patata": {
+    name:"Truita de patata mini",cats:["ou","patata"],time:25,
+    ingredients:[{n:"Patata",q:"1 mitjana"},{n:"Ous",q:"2"},{n:"Oli d'oliva",q:"2 cs"},{n:"Ceba tendra",q:"opcional"}],
+    steps:["Patata a làmines fines, sofregir a foc baix 15 min fins tova.","Batre ous, barrejar amb patata.","Quallar 3 min per banda. Tallar a triangles."]
+  },
+  "ou-espinacs-formatge": {
+    name:"Ous remesclats amb espinacs i formatge",cats:["ou","verdura"],time:10,
+    ingredients:[{n:"Ous",q:"2"},{n:"Espinacs",q:"un grapat"},{n:"Formatge fresc",q:"1 cs"},{n:"Oli d'oliva",q:"1 cs"}],
+    steps:["Espinacs saltejats 3 min.","Afegir ous batuts, remenar suaument.","Fora del foc, afegir formatge. Servir cremós."]
+  },
+  "flam-salat-verdures": {
+    name:"Flam salat de verdures",cats:["ou","verdura"],time:30,
+    ingredients:[{n:"Ous",q:"2"},{n:"Llet",q:"100ml"},{n:"Carbassó ratllat",q:"½"},{n:"Formatge ratllat",q:"2 cs"}],
+    steps:["Batre ous amb llet i carbassó ratllat.","Afegir formatge. Posar en motlles individuals.","Forn 170° bany maria 20 min. Deixar refredar."]
+  },
+  "remenat-xampinyons": {
+    name:"Remenat d'ou amb xampinyons",cats:["ou","verdura"],time:10,
+    ingredients:[{n:"Ous",q:"2"},{n:"Xampinyons",q:"4-5"},{n:"All",q:"1 gra"},{n:"Oli d'oliva",q:"1 cs"},{n:"Julivert",q:"al gust"}],
+    steps:["Saltejar xampinyons laminats amb all 5 min.","Afegir ous batuts, remenar suaument fora del foc.","Servir amb julivert picat."]
+  },
+  "ou-forn-tomquet": {
+    name:"Ou al forn amb tomàquet",cats:["ou","verdura"],time:15,
+    ingredients:[{n:"Ou",q:"1"},{n:"Tomàquet",q:"1"},{n:"Oli d'oliva",q:"1 cs"},{n:"Orenga",q:"al gust"}],
+    steps:["Tomàquet a meitats en safata de forn, oli i orenga.","Forn 180° 8 min. Trencar ou al damunt.","Forn 5-6 min més fins que la clara estigui feta."]
+  },
+
+  // ── LLEGUMS ──────────────────────────────────────────────────────────
+  "hummus-cruditats": {
+    name:"Hummus casolà amb cruditès",cats:["llegum","verdura"],time:10,
+    ingredients:[{n:"Cigrons cuits",q:"100g"},{n:"Tahini",q:"1 cs"},{n:"Oli d'oliva",q:"2 cs"},{n:"Llimona",q:"unes gotes"},{n:"Pastanaga i cogombre",q:"a bastonets"},{n:"Pa torrat",q:"2 llesques"}],
+    steps:["Triturar cigrons, tahini, oli i llimona fins cremós.","Tallar pastanaga i cogombre a bastonets.","Servir amb pa torrat per untar."]
+  },
+  "cigrons-espinacs": {
+    name:"Cigrons saltats amb espinacs",cats:["llegum","verdura"],time:15,
+    ingredients:[{n:"Cigrons cuits",q:"100g"},{n:"Espinacs",q:"un grapat"},{n:"All",q:"1 gra"},{n:"Oli d'oliva",q:"1 cs"},{n:"Pebre vermell dolç",q:"un toc"}],
+    steps:["Saltejar all picat amb oli.","Afegir espinacs, remoure 3 min.","Incorporar cigrons i pebre vermell, 5 min més."]
+  },
+  "lentilles-arros": {
+    name:"Llenties vermelles amb arròs",cats:["llegum","arros"],time:20,
+    ingredients:[{n:"Llenties vermelles",q:"40g"},{n:"Arròs",q:"30g"},{n:"Pastanaga",q:"½"},{n:"Oli d'oliva",q:"1 cs"},{n:"Comí",q:"un pessic"}],
+    steps:["Bullir llenties amb pastanaga ratllada 15 min.","Bullir arròs apart 16 min.","Barrejar amb oli i comí. Textura tova."]
+  },
+  "crema-cigrons": {
+    name:"Crema de carbassa amb cigrons",cats:["verdura","llegum"],time:25,
+    ingredients:[{n:"Carbassa",q:"200g"},{n:"Pastanaga",q:"1"},{n:"Patata",q:"½"},{n:"Cigrons cuits",q:"3 cs"},{n:"Oli d'oliva",q:"1 cs"}],
+    steps:["Bullir carbassa, pastanaga i patata 20 min.","Triturar amb brou fins cremós.","Afegir cigrons sencers i oli cru."]
+  },
+  "puré-llenties": {
+    name:"Puré de llenties",cats:["llegum"],time:20,
+    ingredients:[{n:"Llenties verdes o vermelles",q:"80g"},{n:"Patata",q:"½"},{n:"Oli d'oliva",q:"1 cs"},{n:"Comí dolç",q:"un pessic"}],
+    steps:["Bullir llenties i patata 18 min.","Triturar amb oli fins obtenir puré suau.","Afegir comí. Molt nutritiu i fàcil de menjar."]
+  },
+  "faves-pernil": {
+    name:"Faves saltades amb pernil",cats:["llegum","carn"],time:15,
+    ingredients:[{n:"Faves congelades",q:"100g"},{n:"Pernil serrà",q:"2 llesques"},{n:"All",q:"1 gra"},{n:"Oli d'oliva",q:"1 cs"}],
+    steps:["Bullir faves 5 min.","Saltejar all i pernil tallat a trossets 3 min.","Afegir faves escorregudes, 3 min més."]
+  },
+  "cigrons-pasta": {
+    name:"Pasta amb cigrons",cats:["llegum","pasta"],time:20,
+    ingredients:[{n:"Pasta curta",q:"50g"},{n:"Cigrons cuits",q:"80g"},{n:"Tomàquet triturat",q:"3 cs"},{n:"All",q:"1 gra"},{n:"Oli d'oliva",q:"1 cs"}],
+    steps:["Bullir pasta.","Sofregir all, afegir tomàquet 5 min.","Incorporar cigrons i pasta. Barrejar."]
+  },
+  "pèsols-arros": {
+    name:"Arròs amb pèsols",cats:["llegum","arros"],time:20,
+    ingredients:[{n:"Arròs rodó",q:"50g"},{n:"Pèsols",q:"3 cs"},{n:"All",q:"1 gra"},{n:"Oli d'oliva",q:"1 cs"},{n:"Caldo",q:"150ml"}],
+    steps:["Sofregir all picat amb oli.","Afegir arròs, remoure. Afegir caldo, 15 min.","Incorporar pèsols els últims 5 min."]
+  },
+
+  // ── PASTA I ARRÒS ────────────────────────────────────────────────────
+  "espaguetis-verdura": {
+    name:"Espaguetis amb verdures",cats:["pasta","verdura"],time:15,
+    ingredients:[{n:"Espaguetis fins",q:"50g"},{n:"Carbassó",q:"½"},{n:"Tomàquet cherry",q:"4-5"},{n:"All",q:"1 gra"},{n:"Oli d'oliva",q:"1 cs"}],
+    steps:["Bullir pasta.","Saltejar all, carbassó i tomàquet 6 min.","Barrejar amb pasta i oli cru."]
+  },
+  "arros-verdures-caldo": {
+    name:"Arròs amb verdures en caldo",cats:["arros","verdura"],time:20,
+    ingredients:[{n:"Arròs rodó",q:"50g"},{n:"Pastanaga",q:"1"},{n:"Carbassó",q:"½"},{n:"Caldo de verdures",q:"200ml"}],
+    steps:["Portar caldo a ebullició.","Afegir verdures a daus i arròs.","Coure 16-18 min fins que el caldo s'absorbeixi."]
+  },
+  "fideus-caldo-pollastre": {
+    name:"Fideus en caldo de pollastre",cats:["pasta","carn"],time:20,
+    ingredients:[{n:"Fideus fins",q:"40g"},{n:"Caldo de pollastre",q:"300ml"},{n:"Pastanaga",q:"1"},{n:"Trossets de pollastre cuit",q:"40g"}],
+    steps:["Portar caldo a ebullició amb pastanaga.","Afegir fideus, 8 min.","Incorporar pollastre cuit esmicolat."]
+  },
+  "pasta-formatge": {
+    name:"Pasta amb formatge fos",cats:["pasta"],time:10,
+    ingredients:[{n:"Pasta curta",q:"50g"},{n:"Formatge fresc o ricotta",q:"2 cs"},{n:"Oli d'oliva",q:"1 cs"},{n:"Julivert",q:"al gust"}],
+    steps:["Bullir pasta al dente.","Escórrer guardant una mica d'aigua de cocció.","Barrejar formatge amb la pasta calenta i una mica d'aigua."]
+  },
+  "risotto-carbassa": {
+    name:"Risotto de carbassa",cats:["arros","verdura"],time:25,
+    ingredients:[{n:"Arròs rodó",q:"50g"},{n:"Carbassa",q:"100g"},{n:"Caldo calent",q:"250ml"},{n:"Ceba",q:"¼"},{n:"Oli d'oliva",q:"1 cs"}],
+    steps:["Sofregir ceba i carbassa a daus petits 5 min.","Afegir arròs, remoure. Afegir caldo mica a mica.","Coure 18 min remenant. Textura cremosa."]
+  },
+
+  // ── VERDURA PROTAGONISTA ─────────────────────────────────────────────
+  "crema-carbassa-sola": {
+    name:"Crema de carbassa",cats:["verdura"],time:20,
+    ingredients:[{n:"Carbassa",q:"250g"},{n:"Patata",q:"1"},{n:"Ceba",q:"½"},{n:"Oli d'oliva",q:"1 cs"},{n:"Caldo",q:"300ml"}],
+    steps:["Sofregir ceba, afegir carbassa i patata a daus.","Cobrir amb caldo, bullir 15 min.","Triturar fins obtenir crema suau. Oli cru al servir."]
+  },
+  "brocoli-formatge": {
+    name:"Bròquil al forn amb formatge",cats:["verdura"],time:20,
+    ingredients:[{n:"Bròquil",q:"200g"},{n:"Formatge ratllat",q:"2 cs"},{n:"Oli d'oliva",q:"1 cs"},{n:"All",q:"1 gra"}],
+    steps:["Bullir bròquil 5 min (ha de quedar fermet).","Passar a safata de forn amb oli i all.","Cobrir amb formatge, gratinar 8 min."]
+  },
+  "espinacs-crema": {
+    name:"Crema d'espinacs",cats:["verdura"],time:15,
+    ingredients:[{n:"Espinacs",q:"200g"},{n:"Patata",q:"1"},{n:"All",q:"1 gra"},{n:"Oli d'oliva",q:"1 cs"},{n:"Llet",q:"50ml"}],
+    steps:["Sofregir all, afegir espinacs i patata a daus.","Cobrir amb aigua, bullir 12 min.","Triturar amb un raig de llet fins cremós."]
+  },
+  "pure-patata-verdura": {
+    name:"Puré de patata amb verdures",cats:["patata","verdura"],time:20,
+    ingredients:[{n:"Patata",q:"2 mitjanes"},{n:"Pastanaga",q:"1"},{n:"Llet",q:"3 cs"},{n:"Oli d'oliva",q:"1 cs"}],
+    steps:["Bullir patata i pastanaga pelades 15 min.","Escórrer i aixafar amb llet i oli.","Textura suau i colorida. Molt agradable."]
+  },
+  "carbasso-forn-ou": {
+    name:"Carbassó al forn farcit d'ou",cats:["verdura","ou"],time:25,
+    ingredients:[{n:"Carbassó",q:"1 mitjà"},{n:"Ou",q:"1"},{n:"Formatge ratllat",q:"1 cs"},{n:"Oli d'oliva",q:"1 cs"}],
+    steps:["Tallar carbassó per la meitat, buidar una mica.","Forn 180° 12 min.","Trencar ou dins del carbassó, formatge al damunt.","Forn 8 min més fins que la clara estigui feta."]
+  }
+};
+
+// Funció per obtenir el sopar d'un dia, evitant repeticions setmanals
+function getDinnerForDay(dateKey) {
+  // Si hi ha un override manual, usar-lo
+  if (state.mealOverrides[dateKey + '-dinner']) return state.mealOverrides[dateKey + '-dinner'];
+  // Sopar per defecte del calendari
+  return getDefaultDinner(dateKey) || null;
+}
+
+function getWeekDinners(weekStartDate) {
+  // Retorna els IDs de receptes ja assignades a la setmana (manuals o per defecte)
+  const used = new Set();
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(weekStartDate); d.setDate(d.getDate() + i);
+    const key = fmtDate(d);
+    const id = getDinnerForDay(key);
+    if (id) used.add(id);
+  }
+  return used;
+}
+
+// Sopars proposats per cada dia de maig 2026 (categories del dinar → sopar complementari)
+const DEFAULT_DINNERS = {
+  "2026-05-04": "truita-carbasso",       // dinar peix+pasta+carn → ou+verdura
+  "2026-05-05": "verdura-pollastre",     // dinar arròs+verdura+peix → carn+verdura
+  "2026-05-06": "salmo-arros",           // dinar verdura+llegum+ou → peix+arròs
+  "2026-05-07": "peix-verdura",          // dinar verdura+patata+carn → peix+verdura
+  "2026-05-08": "ou-bledes",             // dinar llegum+arròs+carn → ou+verdura
+  "2026-05-09": "cigrons-espinacs",      // cap setm. lliure
+  "2026-05-10": "pasta-tonyina",         // cap setm. lliure
+  "2026-05-11": "salmo-arros",           // dinar verdura+carn → peix+arròs
+  "2026-05-12": "truita-carbasso",       // dinar arròs+peix+carn → ou+verdura
+  "2026-05-13": "lluc-patata",           // dinar llegum+ou → peix+patata
+  "2026-05-14": "peix-verdura",          // dinar llegum+carn → peix+verdura
+  "2026-05-15": "verdura-pollastre",     // dinar pasta+peix → carn+verdura
+  "2026-05-16": "hummus-cruditats",      // cap setm. lliure
+  "2026-05-17": "lentilles-arros",       // cap setm. lliure
+  "2026-05-18": "ou-bledes",             // dinar arròs+peix+verdura → ou+verdura
+  "2026-05-19": "lentilles-arros",       // dinar verdura+carn → llegum+arròs
+  "2026-05-20": "lluc-patata",           // dinar verdura+llegum+ou → peix+patata
+  "2026-05-21": "peix-verdura",          // dinar pasta+carn → peix+verdura
+  "2026-05-22": "lluc-patata",           // dinar llegum+ou → peix+patata
+  "2026-05-23": "verdura-pollastre",     // cap setm. lliure
+  "2026-05-24": "crema-cigrons",         // cap setm. lliure
+  "2026-05-26": "salmo-arros",           // dinar verdura+carn → peix+arròs
+  "2026-05-27": "verdura-pollastre",     // dinar pasta+peix → carn+verdura
+  "2026-05-28": "peix-verdura",          // dinar arròs+ou → peix+verdura
+  "2026-05-29": "salmo-arros"            // dinar verdura+llegum+carn → peix+arròs
+};
+
+// Dinars de cap de setmana (proposats per nosaltres)
+const WEEKEND_LUNCHES = {
+  "2026-05-09": "verdura-pollastre",
+  "2026-05-10": "salmo-arros",
+  "2026-05-16": "truita-carbasso",
+  "2026-05-17": "pollastre-pastanaga",
+  "2026-05-23": "pasta-tonyina",
+  "2026-05-24": "lluc-patata"
+};
+
+// Inventari inicial buit (s'omple des de l'API)
+const DEFAULT_INVENTORY = [];
+
+/* ======================================================================
+   HELPERS DE MENÚS — accés via state amb fallback a hardcodejats
+   Permet afegir nous mesos editant el Gist sense tocar codi
+   ====================================================================== */
+function getSchoolMenu(dateKey){
+  const ym = dateKey.substring(0,7);
+  const m = state.menus?.[ym]?.school?.[dateKey];
+  if(m !== undefined) return m;
+  return SCHOOL_MENUS[dateKey];
+}
+function getDefaultDinner(dateKey){
+  const ym = dateKey.substring(0,7);
+  const m = state.menus?.[ym]?.dinners?.[dateKey];
+  if(m !== undefined) return m;
+  return DEFAULT_DINNERS[dateKey];
+}
+function getWeekendLunch(dateKey){
+  const ym = dateKey.substring(0,7);
+  const m = state.menus?.[ym]?.weekendLunches?.[dateKey];
+  if(m !== undefined) return m;
+  return WEEKEND_LUNCHES[dateKey];
+}
+
+/* ======================================================================
+   FAVORITES — recepta amb 2+ valoracions positives
+   ====================================================================== */
+function getFavorites(){
+  const counts = {};
+  Object.entries(state.feedback || {}).forEach(([k,fb])=>{
+    if(!fb?.sat || !k.endsWith('-dinner')) return;
+    const dateKey = k.replace('-dinner','');
+    const recipeKey = state.mealOverrides?.[k] || getDefaultDinner(dateKey);
+    if(!recipeKey) return;
+    if(fb.sat==='encantat' || fb.sat==='bé'){
+      counts[recipeKey] = (counts[recipeKey]||0)+1;
+    }
+  });
+  return new Set(Object.entries(counts).filter(([,n])=>n>=2).map(([k])=>k));
+}
+
+/* ======================================================================
+   INVENTARI — feasibilitat de receptes
+   ====================================================================== */
+function ingredientNorm(s){
+  return s.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();
+}
+function haveIngredient(name){
+  if(!state.inventory || state.inventory.length===0) return false;
+  const target = ingredientNorm(name).split(' ').filter(w=>w.length>3);
+  if(target.length===0) return false;
+  return state.inventory.some(i => {
+    const inv = ingredientNorm(i.name);
+    return target.some(t => inv.includes(t));
+  });
+}
+function getFeasibility(recipeKey){
+  const r = RECIPES[recipeKey];
+  if(!r || !r.ingredients?.length) return 0;
+  const have = r.ingredients.filter(ing => haveIngredient(ing.n)).length;
+  return Math.round(have / r.ingredients.length * 100);
+}
+
+/* ======================================================================
+   API — GitHub Gist backend
+   ====================================================================== */
+const GIST_ID = '95242e91225fa897e1803a475b27f466';
+const GIST_FILE = 'state.json';
+let AUTH_KEY = localStorage.getItem('aina_auth') || '';
+
+// Espera amb backoff exponencial
+async function wait(ms){ return new Promise(r=>setTimeout(r,ms)); }
+
+// Fetch amb reintent exponencial (3 intents, backoff 1s/2s/4s)
+async function fetchWithRetry(url, opts={}, maxRetries=3){
+  let lastErr;
+  for(let i=0;i<maxRetries;i++){
+    try{
+      const r = await fetch(url, opts);
+      if(r.status===401||r.status===403) throw new Error('AUTH');
+      if(r.status===429){ // rate limit
+        const retry = parseInt(r.headers.get('Retry-After')||'5')*1000;
+        setSync(`ESPERA ${Math.ceil(retry/1000)}s...`);
+        await wait(retry);
+        continue;
+      }
+      if(!r.ok) throw new Error('NETWORK');
+      return r;
+    }catch(e){
+      if(e.message==='AUTH') throw e; // no reintentis auth errors
+      lastErr = e;
+      if(i < maxRetries-1){
+        const delay = Math.pow(2,i)*1000; // 1s, 2s, 4s
+        setSync(`REINTENTANT ${i+1}/${maxRetries-1}...`);
+        await wait(delay);
+      }
+    }
+  }
+  throw lastErr;
+}
+
+async function apiGet(){
+  const r = await fetchWithRetry(`https://api.github.com/gists/${GIST_ID}`, {
+    headers:{
+      'Authorization':`token ${AUTH_KEY}`,
+      'Accept':'application/vnd.github.v3+json'
+    }
+  });
+  const gist = await r.json();
+  const content = gist.files?.[GIST_FILE]?.content || '{}';
+  return JSON.parse(content);
+}
+async function apiPut(state){
+  const r = await fetchWithRetry(`https://api.github.com/gists/${GIST_ID}`, {
+    method:'PATCH',
+    headers:{
+      'Authorization':`token ${AUTH_KEY}`,
+      'Accept':'application/vnd.github.v3+json',
+      'Content-Type':'application/json'
+    },
+    body:JSON.stringify({files:{[GIST_FILE]:{content:JSON.stringify(state)}}})
+  });
+  return await r.json();
+}
+
+/* ======================================================================
+   ESTAT
+   ====================================================================== */
+let state = {
+  feedback: {},
+  mealOverrides: {},
+  inventory: DEFAULT_INVENTORY,
+  shopDone: {},
+  menus: {}  // { "2026-06": { school:{}, dinners:{}, weekendLunches:{} } }
+};
+
+let weekStart = mondayOf(new Date());
+let saveTimer = null;
+let pendingSave = false;
+
+function scheduleSave(){
+  pendingSave = true;
+  if (saveTimer) clearTimeout(saveTimer);
+  setSync('guardant...');
+  saveTimer = setTimeout(doSave, 600);
+}
+
+async function doSave(){
+  setSync('guardant...');
+  try{
+    await apiPut(state);
+    pendingSave = false;
+    setSync('✓ desat');
+    // Tornar a "OK" discretament al cap de 2s
+    setTimeout(()=>{ if(!pendingSave) setSync('OK'); }, 2000);
+  }catch(e){
+    if(e.message==='AUTH'){
+      setSync('ERROR AUTH');
+      toast('Token invàlid. Tanca sessió i torna a entrar.', true);
+    } else {
+      setSync('error · reintentant');
+      // Reintent manual després de 8s
+      setTimeout(async ()=>{
+        if(pendingSave){
+          try{
+            await apiPut(state);
+            pendingSave = false;
+            setSync('✓ desat');
+            setTimeout(()=>{ if(!pendingSave) setSync('OK'); }, 2000);
+          }catch(e2){
+            setSync('! no desat');
+            toast('Sense connexió. Els canvis es desaran quan torni la xarxa.', true);
+          }
+        }
+      }, 8000);
+    }
+  }
+}
+
+function setSync(t){
+  const el = document.getElementById('sync-status');
+  el.textContent = t;
+  const isErr = t.startsWith('error')||t.startsWith('!')||t.startsWith('ERROR');
+  el.classList.toggle('error', isErr);
+}
+
+function toast(msg, error=false){
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.toggle('error', error);
+  el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'), 2000);
+}
+
+/* ======================================================================
+   UTILITATS DE DATA
+   ====================================================================== */
+const DAY_NAMES = ['Diumenge','Dilluns','Dimarts','Dimecres','Dijous','Divendres','Dissabte'];
+const MONTHS = ['gener','febrer','març','abril','maig','juny','juliol','agost','setembre','octubre','novembre','desembre'];
+
+function fmtDate(d){
+  const y=d.getFullYear(), m=String(d.getMonth()+1).padStart(2,'0'), day=String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+}
+function isSameDay(a,b){return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate()}
+function mondayOf(d){
+  const m = new Date(d);
+  const dow = m.getDay(); // 0 dg, 1 dl
+  const diff = dow===0 ? -6 : 1-dow;
+  m.setDate(m.getDate()+diff);
+  m.setHours(0,0,0,0);
+  return m;
+}
+function getWeekNum(d){
+  const oneJan = new Date(d.getFullYear(),0,1);
+  const days = Math.floor((d - oneJan)/(24*3600*1000));
+  return Math.ceil((days + oneJan.getDay()+1)/7);
+}
+
+/* ======================================================================
+   RENDER SETMANA
+   ====================================================================== */
+function showSkeletonWeek(){
+  const curr = document.getElementById('slot-curr');
+  if(!curr){ return; }
+  let html = '';
+  // Today card skeleton
+  html += `<div class="today-card" style="cursor:default">
+    <div class="skeleton skel-head" style="width:80px;margin-bottom:8px"></div>
+    <div class="skeleton skel-head" style="width:200px;height:26px"></div>
+    <div class="skeleton" style="width:100px;height:12px;margin-top:10px;border-radius:4px"></div>
+  </div>`;
+  // 4 day skeletons
+  for(let i=0;i<4;i++){
+    html += `<div class="skel-day">
+      <div class="skeleton skel-head"></div>
+      <div class="skel-meal"><div class="skeleton skel-dot"></div><div class="skeleton skel-text"></div></div>
+      <div class="skel-meal"><div class="skeleton skel-dot"></div><div class="skeleton skel-text short"></div></div>
+    </div>`;
+  }
+  curr.innerHTML = html;
+  // Centrar al slot del mig
+  const carousel = document.getElementById('week-carousel');
+  if(carousel){
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      carousel.scrollLeft = carousel.offsetWidth;
+    }));
+  }
+}
+
+function buildWeekHTML(startDate){
+  const today = new Date();
+  const todayRef = startDate || weekStart; // la setmana a renderitzar
+  const favorites = getFavorites();
+  let html = '';
+
+  // ── AVUI WIDGET (només al slot central = setmana actual) ──
+  const todayKey = fmtDate(today);
+  const isTodayInThisWeek = (() => {
+    const m = mondayOf(today);
+    return fmtDate(m) === fmtDate(mondayOf(new Date(todayRef)));
+  })();
+
+  if(isTodayInThisWeek){
+    const todayDinner = state.mealOverrides[todayKey+'-dinner'] || getDefaultDinner(todayKey);
+    if(todayDinner && RECIPES[todayDinner]){
+      const r = RECIPES[todayDinner];
+      const feas = getFeasibility(todayDinner);
+      const feasLabel = feas===100 ? 'Pots fer-ho ja ✓' : feas>=50 ? `${feas}% disponible` : 'Falta comprar';
+      html += `<div class="today-card" data-open-today="1">
+        <div class="today-feasibility">${feasLabel}</div>
+        <div class="today-kicker">Sopar d'avui</div>
+        <div class="today-title">${r.name}</div>
+        <div class="today-meta"><span>🕐 ${r.time} min</span></div>
+      </div>`;
+    } else {
+      html += `<div class="today-card empty">
+        <div class="today-kicker">Avui</div>
+        <div class="today-title" style="font-size:16px">Sense sopar programat</div>
+      </div>`;
+    }
+  }
+  const start = new Date(weekStart);
+  const end = new Date(weekStart); end.setDate(end.getDate()+6);
+
+  for(let i=0;i<7;i++){
+    const d = new Date(start); d.setDate(d.getDate()+i);
+    const key = fmtDate(d);
+    const isWeekend = d.getDay()===0 || d.getDay()===6;
+    const isToday = isSameDay(d,today);
+
+    const school = getSchoolMenu(key);
+    const lunchOverride = state.mealOverrides[key+'-lunch'];
+    const dinnerOverride = state.mealOverrides[key+'-dinner'];
+    const dinnerKey = dinnerOverride || getDefaultDinner(key);
+    const weekendLunchKey = getWeekendLunch(key);
+
+    let cardHtml = `<div class="day-head">
+      <div class="day-name">${DAY_NAMES[d.getDay()]}</div>
+      <div class="day-num">${d.getDate()} ${MONTHS[d.getMonth()].slice(0,3)}</div>`;
+    if(school?.festiu) cardHtml += `<div class="day-festiu">FESTIU</div>`;
+    cardHtml += `</div>`;
+
+    if(school?.festiu){
+      cardHtml += `<div class="festiu-only">— sense escola —</div>`;
+    }
+
+    // DINAR
+    if(school && !school.festiu){
+      const fb = state.feedback[key+'-lunch'] || {};
+      cardHtml += `<div class="meal" data-key="${key}" data-type="lunch" data-school="1">
+        <div class="meal-tag lunch">DINAR</div>
+        <div class="meal-body">
+          <div class="meal-name">${lunchOverride || school.text}</div>
+          <div class="meal-meta">
+            <span>Escola${lunchOverride?' · editat':''}</span>
+            ${fb.amount?`<span class="meal-status">· ${statusLabel(fb.amount)}</span>`:''}
+            ${fb.comment?'<span class="meal-status">· 💬</span>':''}
+          </div>
+        </div>
+        <div class="meal-arrow">›</div>
+      </div>`;
+    } else if(weekendLunchKey){
+      const r = RECIPES[weekendLunchKey];
+      const fb = state.feedback[key+'-lunch'] || {};
+      cardHtml += `<div class="meal" data-key="${key}" data-type="lunch" data-recipe="${weekendLunchKey}">
+        <div class="meal-tag lunch">DINAR</div>
+        <div class="meal-body">
+          <div class="meal-name">${r.name}</div>
+          <div class="meal-meta">
+            <span>${state.mealOverrides[key+'-lunch-where']||('Casa · '+r.time+' min')}</span>
+            ${fb.amount?`<span class="meal-status">· ${statusLabel(fb.amount)}</span>`:''}
+            ${fb.comment?'<span class="meal-status">· 💬</span>':''}
+          </div>
+        </div>
+        <div class="meal-arrow">›</div>
+      </div>`;
+    }
+
+    // SOPAR
+    if(dinnerKey && RECIPES[dinnerKey]){
+      const r = RECIPES[dinnerKey];
+      const fb = state.feedback[key+'-dinner'] || {};
+      const isFav = favorites.has(dinnerKey);
+      const isOverride = !!state.mealOverrides[key+'-dinner'];
+      cardHtml += `<div class="meal" data-key="${key}" data-type="dinner" data-recipe="${dinnerKey}">
+        <div class="meal-tag dinner">SOPAR</div>
+        <div class="meal-body">
+          <div class="meal-name">${r.name}${isFav?'<span class="fav-star">★</span>':''}${isOverride?' <span style="font-size:9px;color:var(--muted);font-weight:500">EDITAT</span>':''}</div>
+          <div class="meal-meta">
+            <span>${state.mealOverrides[key+'-dinner-where']||('Casa · '+r.time+' min')}</span>
+            ${fb.amount?`<span class="meal-status">· ${statusLabel(fb.amount)}</span>`:''}
+            ${fb.comment?'<span class="meal-status">· 💬</span>':''}
+          </div>
+        </div>
+        <div class="meal-arrow">›</div>
+      </div>`;
+    }
+
+    // Afegir el card al HTML acumulat
+    const dayClass = 'day' + (isToday?' today':'');
+    html += `<div class="${dayClass}">${cardHtml}</div>`;
+  }
+
+  return html;
+}
+
+function renderSlot(slotEl, offsetWeeks){
+  if(!slotEl) return;
+  const d = new Date(weekStart);
+  d.setDate(d.getDate() + offsetWeeks * 7);
+  const slotWeekStart = mondayOf(d);
+  // Canviar temporalment weekStart per generar l'HTML correcte
+  const saved = weekStart;
+  weekStart = slotWeekStart;
+  const html = buildWeekHTML(slotWeekStart);
+  weekStart = saved;
+  slotEl.innerHTML = html;
+  // Binding del today card
+  slotEl.querySelector('[data-open-today]')?.addEventListener('click',()=>{
+    const todayKey = fmtDate(new Date());
+    const dinnerKey = state.mealOverrides[todayKey+'-dinner'] || getDefaultDinner(todayKey);
+    if(dinnerKey) openModal(todayKey,'dinner',dinnerKey,false);
+  });
+  // Binding dels meals
+  slotEl.querySelectorAll('.meal').forEach(m=>{
+    m.addEventListener('click',()=>openModal(m.dataset.key, m.dataset.type, m.dataset.recipe, m.dataset.school==='1'));
+  });
+}
+
+function renderWeek(){
+  const carousel = document.getElementById('week-carousel');
+  const slotPrev = document.getElementById('slot-prev');
+  const slotCurr = document.getElementById('slot-curr');
+  const slotNext = document.getElementById('slot-next');
+  if(!carousel) return;
+
+  // Actualitzar week-label UN cop, amb weekStart correcte
+  (()=>{
+    const s = new Date(weekStart);
+    const e = new Date(weekStart); e.setDate(e.getDate()+6);
+    const lab = (s.getMonth()===e.getMonth())
+      ? `${s.getDate()} — ${e.getDate()} ${MONTHS[e.getMonth()]}`
+      : `${s.getDate()} ${MONTHS[s.getMonth()].slice(0,3)} — ${e.getDate()} ${MONTHS[e.getMonth()].slice(0,3)}`;
+    document.getElementById('week-label').innerHTML = lab + '<small>Setmana ' + getWeekNum(s) + '</small>';
+  })();
+
+  // Renderitzar els 3 slots
+  renderSlot(slotPrev, -1);
+  renderSlot(slotCurr, 0);
+  renderSlot(slotNext, +1);
+
+  // Centrar al slot del mig — esperar el paint del browser
+  carousel.style.scrollBehavior = 'auto';
+  requestAnimationFrame(()=>{
+    requestAnimationFrame(()=>{
+      carousel.scrollLeft = carousel.offsetWidth;
+    });
+  });
+
+  // Actualitzar botó "avui"
+  updateTodayBtn();
+}
+
+function statusLabel(s){return {tot:'Tot ✓',meitat:'Meitat',poc:'Poc',res:'Res'}[s]||s}
+
+function whyForDay(key, dinnerKey){
+  const school = getSchoolMenu(key);
+  if(!school || school.festiu) return '';
+  const dinner = RECIPES[dinnerKey];
+  if(!dinner) return '';
+  const lunchCats = school.cats || [];
+  const dinnerCats = dinner.cats || [];
+  const tagMap = {peix:'peix',carn:'carn',ou:'ou',llegum:'llegum',verdura:'verdura',pasta:'pasta',arros:'arròs',patata:'patata'};
+  const lunchTxt = lunchCats.map(c=>tagMap[c]||c).join(', ');
+  const dinnerTxt = dinnerCats.map(c=>tagMap[c]||c).join(' + ');
+  return `A l'escola han menjat <em>${lunchTxt}</em>. Per sopar, ${dinnerTxt}.`;
+}
+
+/* ======================================================================
+   MODAL
+   ====================================================================== */
+function openModal(dateKey, type, recipeKey, isSchool, jumpToAlts=false){
+  const modal = document.getElementById('modal');
+  const bg = document.getElementById('modal-bg');
+  const body = document.getElementById('m-body');
+  const dayName = DAY_NAMES[new Date(dateKey+'T12:00:00').getDay()];
+
+  document.getElementById('m-kicker').className = 'modal-kicker' + (type==='lunch'?' lunch':'');
+  document.getElementById('m-kicker').textContent = (type==='lunch'?'DINAR':'SOPAR') + ' · ' + dayName.toUpperCase();
+
+  if(isSchool){
+    const school = getSchoolMenu(dateKey);
+    const override = state.mealOverrides[dateKey+'-lunch'];
+    document.getElementById('m-title').textContent = override || school.text;
+    document.getElementById('m-time').innerHTML = '';
+  } else {
+    const r = RECIPES[recipeKey];
+    document.getElementById('m-title').textContent = r.name;
+    document.getElementById('m-time').innerHTML = r.time ? `🕐 <span>${r.time} min</span>` : '';
+  }
+
+  let html = '';
+
+  if(type==='dinner'){
+    const why = whyForDay(dateKey, recipeKey);
+    if(why) html += `<div class="why">${why}</div>`;
+  }
+
+  if(isSchool){
+    const school = getSchoolMenu(dateKey);
+    const override = state.mealOverrides[dateKey+'-lunch'];
+    html += `<div class="section-title">Menú escolar</div>
+      <p style="font-size:13.5px;color:var(--ink);line-height:1.5;margin:0">${override || school.text}</p>
+      <button class="edit-btn" id="edit-lunch">${override?'✎ EDITAR DINAR':'✎ EDITAR DINAR · DEMANAR NOU SOPAR'}</button>`;
+  } else {
+    const r = RECIPES[recipeKey];
+    html += `<div class="section-title">Ingredients</div><ul class="ingredients">`;
+    r.ingredients.forEach(ing=>{
+      const have = haveIngredient(ing.n);
+      html += `<li>
+        <div class="ing-check ${have?'have':'miss'}">${have?'✓':'+'}</div>
+        <div class="ing-name">${ing.n}</div>
+        <div class="ing-qty">${ing.q}</div>
+      </li>`;
+    });
+    html += `</ul>`;
+    html += `<div class="section-title">Preparació</div>`;
+    r.steps.forEach((s,i)=>{
+      html += `<div class="recipe-step">
+        <div class="recipe-num">${String(i+1).padStart(2,'0')}</div>
+        <div class="recipe-text">${s}</div>
+      </div>`;
+    });
+  }
+
+  // Alternatives (només per a sopars i dinars de cap de setmana, no escola)
+  if(!isSchool && recipeKey){
+    const school = getSchoolMenu(dateKey);
+    const lunchCats = school?.cats || [];
+    const allRecipes = Object.entries(RECIPES);
+
+    // ── ON MENGEM? ──
+    const whereKey = dateKey + '-' + type + '-where';
+    const whereVal = state.mealOverrides[whereKey] || '';
+    const whereOptions = ['A casa', 'Fora', 'A casa dels avis'];
+    html += `<div class="section-title">On mengem?</div>
+      <div class="where-row">
+        ${whereOptions.map(o=>`<button class="where-btn ${whereVal===o?'active':''}" data-where="${o}">${o}</button>`).join('')}
+      </div>
+      <input type="text" class="where-input" id="where-custom" placeholder="o escriu on sou..." value="${whereOptions.includes(whereVal)?'':whereVal}">
+    `;
+    // Botó editar sopar (visible si no és "A casa")
+    const showEditBtn = whereVal && whereVal !== 'A casa';
+    html += `<button class="edit-btn" id="edit-dinner-where" style="${showEditBtn?'':'display:none'}">✎ EDITAR SOPAR</button>`;
+
+    const weekUsed = getWeekDinners(weekStart);
+    const favorites = getFavorites();
+    const isOverride = !!state.mealOverrides[dateKey+'-dinner'];
+
+    // Categoritzar amb feasibilitat
+    const annotate = ([id, r]) => ({
+      id, r, time:r.time, feas:getFeasibility(id),
+      isFav:favorites.has(id), isInWeek:weekUsed.has(id),
+      complements: r.cats.every(c => !lunchCats.includes(c))
+    });
+
+    let recommended = allRecipes.filter(([id])=> id !== recipeKey)
+      .map(annotate)
+      .filter(x => x.complements && !x.isInWeek);
+
+    // Ordenar: primer favorites, després feasibilitat, després temps
+    const sortKey = x => -(x.isFav?1000:0) - x.feas + x.time/100;
+    recommended.sort((a,b) => sortKey(a) - sortKey(b));
+    recommended = recommended.slice(0,8);
+
+    const recIds = new Set([recipeKey, ...recommended.map(x=>x.id)]);
+    let others = allRecipes.filter(([id])=> !recIds.has(id))
+      .map(annotate).filter(x => !x.isInWeek);
+    others.sort((a,b) => sortKey(a) - sortKey(b));
+    others = others.slice(0,8);
+
+    const catIcon = {peix:'🐟',carn:'🥩',ou:'🥚',llegum:'🫘',verdura:'🥦',arros:'🍚',pasta:'🍝',patata:'🥔'};
+    const renderAlt = (list, label) => {
+      if(!list.length) return '';
+      let s = `<div class="alt-section"><div class="alt-label">${label}</div><div class="alt-grid">`;
+      list.forEach(x => {
+        const icon = catIcon[x.r.cats[0]] || '🍽️';
+        const fav = x.isFav?' <span style="color:var(--gold,#c89860)">★</span>':'';
+        const feasCls = x.feas===100?'full':x.feas>=50?'partial':'none';
+        const feasIcon = x.feas===100?'✓':'';
+        s += `<button class="alt-btn ${x.id===recipeKey?'selected':''}" data-alt-id="${x.id}" data-name="${x.r.name.toLowerCase()}">
+          <span class="alt-name">${icon} ${x.r.name}${fav}</span>
+          <span class="alt-meta">🕐 ${x.time} min · <span class="feasibility ${feasCls}" style="padding:0;background:none">${feasIcon} ${x.feas}%</span></span>
+        </button>`;
+      });
+      s += '</div></div>';
+      return s;
+    };
+
+    html += `<div class="section-title">Canvia el sopar</div>`;
+    html += `<div id="alt-results">`;
+    if(recommended.length) html += renderAlt(recommended, 'Recomanades · disponible al rebost');
+    if(others.length) html += renderAlt(others, 'Altres opcions');
+    html += `</div>`;
+
+    if(isOverride){
+      html += `<button class="restore-btn" id="restore-btn">↺ Restaurar suggeriment original</button>`;
+    }
+  }
+
+  // Feedback
+  const fbKey = dateKey + '-' + type;
+  const fb = state.feedback[fbKey] || {};
+
+  html += `<div class="section-title">Com ha anat</div>
+    <div class="feedback">
+      <div class="fb-row">
+        ${['encantat','bé','poc','no'].map(v=>{
+          const labels={encantat:'Encantada','bé':'Bé',poc:'Així-així',no:'No vol'};
+          const emojis={encantat:'😍','bé':'🙂',poc:'😐',no:'🚫'};
+          return `<button class="fb-btn ${fb.sat===v?'active':''}" data-fb-sat="${v}">
+            <span class="emoji">${emojis[v]}</span>${labels[v]}
+          </button>`;
+        }).join('')}
+      </div>
+      <div class="fb-row qty">
+        ${['tot','meitat','poc','res'].map(v=>{
+          return `<button class="fb-btn ${fb.amount===v?'active':''}" data-fb-amt="${v}">
+            ${{tot:'Tot',meitat:'Meitat',poc:'Poc',res:'Res'}[v]}
+          </button>`;
+        }).join('')}
+      </div>
+      <textarea class="note-input" placeholder="Una nota? (ex: ha llençat les pastanagues...)" id="m-note">${fb.comment||''}</textarea>
+    </div>`;
+
+  body.innerHTML = html;
+
+  // Bind "On mengem?"
+  body.querySelectorAll('[data-where]').forEach(b => {
+    b.addEventListener('click', () => {
+      const whereKey = dateKey + '-' + type + '-where';
+      const val = b.dataset.where;
+      // Toggle: si ja estava actiu, deseleccionar
+      if(state.mealOverrides[whereKey] === val){
+        delete state.mealOverrides[whereKey];
+      } else {
+        state.mealOverrides[whereKey] = val;
+      }
+      scheduleSave();
+      // Actualitzar UI botons
+      body.querySelectorAll('[data-where]').forEach(x =>
+        x.classList.toggle('active', x.dataset.where === state.mealOverrides[whereKey])
+      );
+      // Buidar el camp custom si s'ha triat opció predefinida
+      const customEl = document.getElementById('where-custom');
+      if(customEl && state.mealOverrides[whereKey]) customEl.value = '';
+      // Mostrar/amagar botó editar
+      const editBtn = document.getElementById('edit-dinner-where');
+      if(editBtn){
+        const cur = state.mealOverrides[whereKey];
+        editBtn.style.display = (cur && cur !== 'A casa') ? '' : 'none';
+      }
+    });
+  });
+  const whereCustomEl = document.getElementById('where-custom');
+  if(whereCustomEl){
+    whereCustomEl.addEventListener('input', e => {
+      const whereKey = dateKey + '-' + type + '-where';
+      const val = e.target.value.trim();
+      if(val){
+        state.mealOverrides[whereKey] = val;
+        body.querySelectorAll('[data-where]').forEach(x => x.classList.remove('active'));
+      } else {
+        delete state.mealOverrides[whereKey];
+      }
+      scheduleSave();
+      // Mostrar/amagar botó editar
+      const editBtn2 = document.getElementById('edit-dinner-where');
+      if(editBtn2) editBtn2.style.display = val ? '' : 'none';
+    });
+  }
+
+  // Bind alternatives
+  body.querySelectorAll('[data-alt-id]').forEach(b => {
+    b.addEventListener('click', () => {
+      const newRecipe = b.dataset.altId;
+      state.mealOverrides[dateKey + '-' + type] = newRecipe;
+      scheduleSave();
+      closeModal();
+      setTimeout(() => openModal(dateKey, type, newRecipe, false), 300);
+    });
+  });
+
+  // Editar sopar quan mengem fora
+  const editDinnerWhereEl = document.getElementById('edit-dinner-where');
+  if(editDinnerWhereEl){
+    editDinnerWhereEl.addEventListener('click', () => {
+      const nou = prompt('Què mengeu?', state.mealOverrides[dateKey+'-'+type+'-custom'] || '');
+      if(nou !== null && nou.trim()){
+        state.mealOverrides[dateKey+'-'+type+'-custom'] = nou.trim();
+        // Actualitzar títol del modal
+        document.getElementById('m-title').textContent = nou.trim();
+        document.getElementById('m-time').innerHTML = '';
+        scheduleSave();
+        toast('Sopar actualitzat');
+      }
+    });
+  }
+
+  // Restore
+  const restoreEl = document.getElementById('restore-btn');
+  if(restoreEl){
+    restoreEl.addEventListener('click', ()=>{
+      const original = DEFAULT_DINNERS[dateKey];
+      delete state.mealOverrides[dateKey+'-dinner'];
+      scheduleSave();
+      closeModal();
+      if(original) setTimeout(()=> openModal(dateKey,'dinner',original,false), 300);
+    });
+  }
+
+  body.querySelectorAll('[data-fb-sat]').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const v = b.dataset.fbSat;
+      state.feedback[fbKey] = state.feedback[fbKey]||{};
+      state.feedback[fbKey].sat = state.feedback[fbKey].sat===v?null:v;
+      scheduleSave();
+      // Bind "On mengem?"
+  body.querySelectorAll('[data-where]').forEach(b => {
+    b.addEventListener('click', () => {
+      const whereKey = dateKey + '-' + type + '-where';
+      const val = b.dataset.where;
+      // Toggle: si ja estava actiu, deseleccionar
+      if(state.mealOverrides[whereKey] === val){
+        delete state.mealOverrides[whereKey];
+      } else {
+        state.mealOverrides[whereKey] = val;
+      }
+      scheduleSave();
+      // Actualitzar UI botons
+      body.querySelectorAll('[data-where]').forEach(x =>
+        x.classList.toggle('active', x.dataset.where === state.mealOverrides[whereKey])
+      );
+      // Buidar el camp custom si s'ha triat opció predefinida
+      const customEl = document.getElementById('where-custom');
+      if(customEl && state.mealOverrides[whereKey]) customEl.value = '';
+    });
+  });
+  const whereCustomEl = document.getElementById('where-custom');
+  if(whereCustomEl){
+    whereCustomEl.addEventListener('input', e => {
+      const whereKey = dateKey + '-' + type + '-where';
+      const val = e.target.value.trim();
+      if(val){
+        state.mealOverrides[whereKey] = val;
+        // Deseleccionar botons predefinits
+        body.querySelectorAll('[data-where]').forEach(x => x.classList.remove('active'));
+      } else {
+        delete state.mealOverrides[whereKey];
+      }
+      scheduleSave();
+    });
+  }
+
+  // Bind alternatives
+  body.querySelectorAll('[data-alt-id]').forEach(b => {
+    b.addEventListener('click', () => {
+      const newRecipe = b.dataset.altId;
+      state.mealOverrides[dateKey + '-' + type] = newRecipe;
+      scheduleSave();
+      closeModal();
+      setTimeout(() => openModal(dateKey, type, newRecipe, false), 300);
+    });
+  });
+
+  // Restore
+  const restoreEl = document.getElementById('restore-btn');
+  if(restoreEl){
+    restoreEl.addEventListener('click', ()=>{
+      const original = DEFAULT_DINNERS[dateKey];
+      delete state.mealOverrides[dateKey+'-dinner'];
+      scheduleSave();
+      closeModal();
+      if(original) setTimeout(()=> openModal(dateKey,'dinner',original,false), 300);
+    });
+  }
+
+  body.querySelectorAll('[data-fb-sat]').forEach(x=>x.classList.toggle('active', x.dataset.fbSat===state.feedback[fbKey].sat));
+    });
+  });
+  body.querySelectorAll('[data-fb-amt]').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const v = b.dataset.fbAmt;
+      state.feedback[fbKey] = state.feedback[fbKey]||{};
+      state.feedback[fbKey].amount = state.feedback[fbKey].amount===v?null:v;
+      scheduleSave();
+      haptic('light');
+      body.querySelectorAll('[data-fb-amt]').forEach(x=>x.classList.toggle('active', x.dataset.fbAmt===state.feedback[fbKey].amount));
+    });
+  });
+  document.getElementById('m-note').addEventListener('input',(e)=>{
+    state.feedback[fbKey] = state.feedback[fbKey]||{};
+    state.feedback[fbKey].comment = e.target.value;
+    scheduleSave();
+  });
+
+  if(isSchool){
+    document.getElementById('edit-lunch').addEventListener('click',()=>{
+      const current = state.mealOverrides[dateKey+'-lunch'] || getSchoolMenu(dateKey).text;
+      const nou = prompt('Què ha menjat realment a l\'escola?', current);
+      if(nou && nou.trim() && nou !== current){
+        state.mealOverrides[dateKey+'-lunch'] = nou.trim();
+        scheduleSave();
+        toast('Dinar actualitzat. Demana a Claude que recalculi sopars.');
+        closeModal();
+      }
+    });
+  }
+
+  bg.classList.add('open');
+  modal.classList.add('open');
+  if(jumpToAlts){
+    setTimeout(()=>{
+      const altSection = body.querySelector('.section-title:last-of-type');
+      altSection?.scrollIntoView({behavior:'smooth',block:'start'});
+    }, 380);
+  }
+}
+
+function haveIngredient(name){
+  const lower = name.toLowerCase();
+  return state.inventory.some(i => lower.includes(i.name.toLowerCase()) || i.name.toLowerCase().includes(lower.split(' ')[0]));
+}
+
+document.getElementById('m-close').addEventListener('click',closeModal);
+document.getElementById('modal-bg').addEventListener('click',closeModal);
+function closeModal(){
+  document.getElementById('modal').classList.remove('open');
+  document.getElementById('modal-bg').classList.remove('open');
+  setTimeout(renderWeek, 300);
+}
+
+// Swipe cap avall per tancar el modal
+(()=>{
+  const modal = document.getElementById('modal');
+  const grip = document.querySelector('.modal-grip');
+  let startY=0, currentY=0, dragging=false;
+
+  const onStart = e => {
+    startY = (e.touches||[e])[0].clientY;
+    currentY = startY;
+    dragging = true;
+    modal.classList.add('dragging');
+  };
+  const onMove = e => {
+    if(!dragging) return;
+    currentY = (e.touches||[e])[0].clientY;
+    const dy = Math.max(0, currentY - startY);
+    modal.style.transform = `translateY(${dy}px)`;
+    const opacity = Math.max(0, 1 - dy/300);
+    document.getElementById('modal-bg').style.opacity = opacity*0.5;
+  };
+  const onEnd = () => {
+    if(!dragging) return;
+    dragging = false;
+    modal.classList.remove('dragging');
+    const dy = currentY - startY;
+    modal.style.transform = '';
+    document.getElementById('modal-bg').style.opacity = '';
+    if(dy > 100) closeModal();
+  };
+
+  modal.addEventListener('touchstart', onStart, {passive:true});
+  modal.addEventListener('touchmove', onMove, {passive:true});
+  modal.addEventListener('touchend', onEnd, {passive:true});
+})();
+
+/* ======================================================================
+   TABS + NAV
+   ====================================================================== */
+// Vista toggle setmana/mes
+let currentView = 'week';
+document.querySelectorAll('.view-btn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.view-btn').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    currentView = b.dataset.view;
+    const weeknav = document.getElementById('weeknav-bar');
+    const weekTab = document.querySelector('.tab[data-pane="week"]');
+    const isOnWeekTab = weekTab?.classList.contains('active');
+    const isOnStats = document.querySelector('.tab[data-pane="stats"]')?.classList.contains('active');
+
+    if(currentView==='week'){
+      weeknav.style.display='flex';
+      if(isOnWeekTab) switchPane('pane-week');
+      renderWeek();
+    } else {
+      weeknav.style.display='none';
+      if(isOnWeekTab) switchPane('pane-month');
+      renderMonth();
+    }
+    if(isOnStats) renderStats();
+  });
+});
+
+function switchPane(paneId){
+  document.querySelectorAll('.tab-pane').forEach(p=>{
+    p.classList.remove('active','fade-in');
+  });
+  const el = document.getElementById(paneId);
+  if(el){
+    el.classList.add('active');
+    requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('fade-in')));
+  }
+}
+
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    const pane = t.dataset.pane;
+    if(pane==='week'){
+      switchPane(currentView==='week' ? 'pane-week' : 'pane-month');
+    } else {
+      switchPane('pane-'+pane);
+    }
+    if(pane==='inv') renderInventory();
+    if(pane==='shop') renderShopping();
+    if(pane==='stats') renderStats();
+  });
+});
+
+/* ======================================================================
+   VISTA MENSUAL
+   ====================================================================== */
+function renderMonth(){
+  const pane = document.getElementById('pane-month');
+  const now = new Date();
+  const year = weekStart.getFullYear();
+  const month = weekStart.getMonth();
+  const monthName = MONTHS[month].charAt(0).toUpperCase() + MONTHS[month].slice(1);
+
+  // Actualitzar label header
+  document.getElementById('week-label').innerHTML =
+    monthName + ' ' + year + '<small>Vista mensual</small>';
+
+  const firstDay = new Date(year, month, 1);
+  const lastDay = new Date(year, month+1, 0);
+  // Ajustar: dilluns=0
+  let startDow = firstDay.getDay() - 1;
+  if(startDow < 0) startDow = 6;
+
+  const DOWS = ['Dl','Dt','Dc','Dj','Dv','Ds','Dg'];
+  let html = '<div class="month-header">';
+  DOWS.forEach(d=> html += `<div class="month-dow">${d}</div>`);
+  html += '</div><div class="month-grid">';
+
+  // Cel·les buides inici
+  for(let i=0;i<startDow;i++) html += '<div class="month-day empty"></div>';
+
+  for(let d=1;d<=lastDay.getDate();d++){
+    const date = new Date(year,month,d);
+    const key = fmtDate(date);
+    const school = getSchoolMenu(key);
+    const isToday = isSameDay(date,now);
+    const isFestiu = school?.festiu;
+    const hasDinner = getDefaultDinner(key) || state.mealOverrides[key+'-dinner'];
+    const hasLunch = school && !school.festiu;
+    const fb = state.feedback[key+'-dinner'];
+
+    let cls = 'month-day';
+    if(isToday) cls += ' today';
+    if(isFestiu) cls += ' festiu';
+
+    html += `<div class="${cls}" data-month-key="${key}">
+      <span class="month-day-num">${d}</span>
+      <div class="month-dots">
+        ${hasLunch ? '<span class="month-dot dot-lunch" title="Dinar escola"></span>' : ''}
+        ${hasDinner ? '<span class="month-dot dot-dinner" title="Sopar"></span>' : ''}
+        ${fb?.sat ? '<span class="month-dot dot-fb" title="Valorat"></span>' : ''}
+      </div>
+    </div>`;
+  }
+  html += '</div>';
+
+  // Llegenda
+  html += `<div style="display:flex;gap:12px;margin-top:12px;padding:0 4px">
+    <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted)">
+      <span class="month-dot dot-lunch"></span> Dinar escola
+    </div>
+    <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted)">
+      <span class="month-dot dot-dinner"></span> Sopar
+    </div>
+    <div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted)">
+      <span class="month-dot dot-fb"></span> Valorat
+    </div>
+  </div>`;
+
+  pane.innerHTML = html;
+
+  // Toc al dia → obrir sopar
+  pane.querySelectorAll('[data-month-key]').forEach(el=>{
+    el.addEventListener('click',()=>{
+      const k = el.dataset.monthKey;
+      const dinnerKey = state.mealOverrides[k+'-dinner'] || getDefaultDinner(k);
+      if(!dinnerKey) return;
+      // Canviar a vista setmana del dia
+      const d = new Date(k+'T12:00:00');
+      weekStart = mondayOf(d);
+      currentView = 'week';
+      document.querySelectorAll('.view-btn').forEach(b=>b.classList.toggle('active', b.dataset.view==='week'));
+      document.getElementById('weeknav-bar').style.display='flex';
+      document.getElementById('pane-month').classList.remove('active');
+      document.getElementById('pane-week').classList.add('active');
+      renderWeek();
+      setTimeout(()=> openModal(k,'dinner',dinnerKey,false), 300);
+    });
+  });
+}
+
+/* ======================================================================
+   ESTADÍSTIQUES
+   ====================================================================== */
+function renderStats(){
+  const pane = document.getElementById('stats-content');
+
+  // Determinar període segons currentView
+  const isWeek = currentView === 'week';
+  let dates = [];
+  let periodLabel = '';
+
+  if(isWeek){
+    // Setmana actual
+    for(let i=0;i<7;i++){
+      const d = new Date(weekStart); d.setDate(weekStart.getDate()+i);
+      dates.push(fmtDate(d));
+    }
+    const start = new Date(weekStart);
+    const end = new Date(weekStart); end.setDate(end.getDate()+6);
+    periodLabel = `${start.getDate()}—${end.getDate()} ${MONTHS[end.getMonth()]} ${end.getFullYear()} · Setmana`;
+  } else {
+    // Mes actual
+    const year = weekStart.getFullYear();
+    const month = weekStart.getMonth();
+    const lastDay = new Date(year, month+1, 0).getDate();
+    for(let d=1;d<=lastDay;d++){
+      dates.push(fmtDate(new Date(year,month,d)));
+    }
+    const monthName = MONTHS[month].charAt(0).toUpperCase()+MONTHS[month].slice(1);
+    periodLabel = `${monthName} ${year} · Mes complet`;
+  }
+
+  const catCount = {};
+  const catLabel = {peix:'Peix 🐟',carn:'Carn 🥩',ou:'Ous 🥚',llegum:'Llegums 🫘',verdura:'Verdura 🥦',arros:'Arròs 🍚',pasta:'Pasta 🍝',patata:'Patata 🥔'};
+  const catColor = {peix:'#3a7ca5',carn:'#c1602e',ou:'#e8a838',llegum:'#5a6f2a',verdura:'#4a8f5a',arros:'#c89860',pasta:'#9b6b9b',patata:'#b8943a'};
+
+  let totalMeals = 0, ratedMeals = 0, lovedMeals = 0;
+
+  dates.forEach(key => {
+    // DINAR escola (entre setmana, no festius)
+    const school = getSchoolMenu(key);
+    if(school && !school.festiu){
+      (school.cats||[]).forEach(c=>{ catCount[c]=(catCount[c]||0)+1; });
+      totalMeals++;
+      const fbL = state.feedback[key+'-lunch'];
+      if(fbL?.sat){ ratedMeals++; if(fbL.sat==='encantat'||fbL.sat==='bé') lovedMeals++; }
+    }
+    // DINAR cap de setmana (proposat per nosaltres)
+    const weekendKey = state.mealOverrides[key+'-lunch-recipe'] || getWeekendLunch(key);
+    if(weekendKey && RECIPES[weekendKey] && (!school || school.festiu === undefined && !getSchoolMenu(key))){
+      // Només si no hi ha menú escolar (cap de setmana o festiu)
+      const isWeekend = !school;
+      if(isWeekend){
+        (RECIPES[weekendKey].cats||[]).forEach(c=>{ catCount[c]=(catCount[c]||0)+1; });
+        totalMeals++;
+        const fbL = state.feedback[key+'-lunch'];
+        if(fbL?.sat){ ratedMeals++; if(fbL.sat==='encantat'||fbL.sat==='bé') lovedMeals++; }
+      }
+    }
+    // SOPAR
+    const dinnerKey = state.mealOverrides[key+'-dinner'] || getDefaultDinner(key);
+    if(dinnerKey && RECIPES[dinnerKey]){
+      (RECIPES[dinnerKey].cats||[]).forEach(c=>{ catCount[c]=(catCount[c]||0)+1; });
+      totalMeals++;
+      const fb = state.feedback[key+'-dinner'];
+      if(fb?.sat){ ratedMeals++; if(fb.sat==='encantat'||fb.sat==='bé') lovedMeals++; }
+    }
+  });
+
+  const maxVal = Math.max(...Object.values(catCount), 1);
+
+  let html = `<p class="section-intro">${periodLabel}</p>`;
+
+  // Cards resum
+  const rated = ratedMeals > 0 ? Math.round(lovedMeals/ratedMeals*100) : '—';
+  html += `<div class="stats-grid">
+    <div class="stat-card"><div class="stat-num">${totalMeals}</div><div class="stat-label">Àpats totals</div></div>
+    <div class="stat-card"><div class="stat-num">${ratedMeals}</div><div class="stat-label">Valorats</div></div>
+    <div class="stat-card"><div class="stat-num">${lovedMeals}</div><div class="stat-label">Li ha agradat</div></div>
+    <div class="stat-card"><div class="stat-num">${rated}${rated!=='—'?'%':''}</div><div class="stat-label">% positiu</div></div>
+  </div>`;
+
+  // Gràfic de barres
+  html += `<div class="section-title">Distribució per aliment</div>`;
+  const sorted = Object.entries(catCount).sort((a,b)=>b[1]-a[1]);
+  sorted.forEach(([cat, count])=>{
+    const pct = Math.round(count/maxVal*100);
+    const color = catColor[cat]||'#888';
+    const label = catLabel[cat]||cat;
+    html += `<div class="bar-row">
+      <div class="bar-label">${label}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${pct}%;background:${color}"></div></div>
+      <div class="bar-count">${count}</div>
+    </div>`;
+  });
+
+  // Historial feedback
+  const fbEntries = Object.entries(state.feedback||{})
+    .filter(([k,v])=>v?.comment && k.endsWith('-dinner'))
+    .sort((a,b)=>b[0].localeCompare(a[0])).slice(0,5);
+
+  if(fbEntries.length){
+    html += `<div class="section-title">Últims comentaris</div>`;
+    fbEntries.forEach(([k,fb])=>{
+      const dateKey = k.replace('-dinner','');
+      const dinnerKey = state.mealOverrides[k] || getDefaultDinner(dateKey);
+      const name = dinnerKey && RECIPES[dinnerKey] ? RECIPES[dinnerKey].name : dateKey;
+      const emojis={encantat:'😍',bé:'🙂',poc:'😐',no:'🚫'};
+      html += `<div style="padding:10px 12px;background:var(--paper);border:1px solid var(--line);border-radius:10px;margin-bottom:6px">
+        <div style="font-size:12px;font-weight:600;color:var(--sage);margin-bottom:4px">${name} ${emojis[fb.sat]||''}</div>
+        <div style="font-size:13px;color:var(--ink)">${fb.comment}</div>
+      </div>`;
+    });
+  }
+
+  pane.innerHTML = html;
+}
+
+
+
+/* ======================================================================
+   INVENTARI
+   ====================================================================== */
+function renderInventory(){
+  const list = document.getElementById('inv-list');
+  list.innerHTML = '';
+  if(state.inventory.length===0){
+    list.innerHTML = '<div class="festiu-only">Encara no hi ha res a l\'inventari.<br>Demana a Claude que l\'ompli o puja un tiquet.</div>';
+    return;
+  }
+  const cats = ['Fresc','Sec','Congelat'];
+  cats.forEach(cat=>{
+    const items = state.inventory.filter(i=>i.cat===cat);
+    if(items.length===0) return;
+    const t = document.createElement('div');
+    t.className = 'cat-title';
+    t.textContent = cat==='Fresc'?'Fresc i nevera':cat==='Sec'?'Rebost i sec':'Congelat';
+    list.appendChild(t);
+    items.forEach((i,idx)=>{
+      const realIdx = state.inventory.indexOf(i);
+      const el = document.createElement('div');
+      el.className = 'inv-item';
+      el.innerHTML = `
+        <div class="inv-name">${i.name}</div>
+        <div class="inv-qty">${i.qty||''}</div>
+        <button class="inv-btn" data-act="del">×</button>
+      `;
+      el.querySelector('[data-act=del]').addEventListener('click',()=>{
+        if(confirm(`Eliminar ${i.name}?`)){
+          state.inventory.splice(realIdx,1);
+          scheduleSave();
+          renderInventory();
+        }
+      });
+      list.appendChild(el);
+    });
+  });
+}
+
+
+
+/* ======================================================================
+   COMPRA
+   ====================================================================== */
+function generateShoppingList(){
+  // Recull tots els ingredients dels sopars de la setmana actual
+  // que NO tenim a l'inventari
+  const ingredients = new Map();
+  for(let i=0;i<7;i++){
+    const d = new Date(weekStart); d.setDate(weekStart.getDate()+i);
+    const key = fmtDate(d);
+    const dinnerKey = state.mealOverrides[key+'-dinner'] || getDefaultDinner(key);
+    const weekendLunchKey = getWeekendLunch(key);
+    [dinnerKey, weekendLunchKey].filter(Boolean).forEach(rk=>{
+      const r = RECIPES[rk]; if(!r) return;
+      r.ingredients.forEach(ing=>{
+        if(!haveIngredient(ing.n)){
+          if(!ingredients.has(ing.n)) ingredients.set(ing.n, ing.q);
+        }
+      });
+    });
+  }
+  return Array.from(ingredients.entries()).map(([name,qty])=>({name,qty}));
+}
+
+function renderShopping(){
+  const list = document.getElementById('shop-list');
+  list.innerHTML = '';
+  const items = generateShoppingList();
+  if(items.length===0){
+    list.innerHTML = '<div class="festiu-only">Tot el necessari ja és a casa! 🎉</div>';
+    return;
+  }
+  items.forEach(s=>{
+    const done = state.shopDone[s.name];
+    const el = document.createElement('div');
+    el.className = 'shop-item' + (done?' done':'');
+    el.innerHTML = `
+      <button class="shop-check ${done?'done':''}">${done?'✓':''}</button>
+      <div class="shop-name">${s.name}</div>
+      <div class="shop-qty">${s.qty}</div>
+    `;
+    el.querySelector('.shop-check').addEventListener('click',()=>{
+      haptic('medium');
+      state.shopDone[s.name] = !state.shopDone[s.name];
+      scheduleSave();
+      if(state.shopDone[s.name]){
+        // Animar col·lapse abans de re-renderitzar
+        el.classList.add('collapsing');
+        setTimeout(()=> renderShopping(), 280);
+      } else {
+        renderShopping();
+      }
+    });
+    list.appendChild(el);
+  });
+}
+
+/* ======================================================================
+   LOGIN
+   ====================================================================== */
+async function tryLogin(){
+  const key = document.getElementById('login-key').value.trim();
+  if(!key) return;
+  AUTH_KEY = key;
+  try{
+    const data = await apiGet();
+    localStorage.setItem('aina_auth', key);
+    Object.assign(state, data);
+    if(!state.feedback) state.feedback = {};
+    if(!state.mealOverrides) state.mealOverrides = {};
+    if(!state.inventory) state.inventory = [];
+    if(!state.shopDone) state.shopDone = {};
+    if(!state.menus) state.menus = {};
+    if(!state.menus) state.menus = {};
+    document.getElementById('login').style.display='none';
+    document.getElementById('app').style.display='flex';
+    renderWeek();
+  }catch(e){
+    if(e.message==='AUTH'){
+      document.getElementById('login-err').textContent = 'Clau incorrecta.';
+      AUTH_KEY = '';
+    } else {
+      document.getElementById('login-err').textContent = 'Error de connexió. Reintenta.';
+    }
+  }
+}
+document.getElementById('login-btn').addEventListener('click',tryLogin);
+document.getElementById('login-key').addEventListener('keydown',(e)=>{ if(e.key==='Enter') tryLogin() });
+
+// Tancar sessió
+document.getElementById('share-btn')?.addEventListener('click',()=>{
+  const start = new Date(weekStart);
+  const lines = [`🍽️ Àpats Aina · setmana del ${start.getDate()} ${MONTHS[start.getMonth()]}`,''];
+  for(let i=0;i<7;i++){
+    const d = new Date(start); d.setDate(start.getDate()+i);
+    const key = fmtDate(d);
+    const dinnerKey = state.mealOverrides[key+'-dinner'] || getDefaultDinner(key);
+    if(dinnerKey && RECIPES[dinnerKey]){
+      const r = RECIPES[dinnerKey];
+      const where = state.mealOverrides[key+'-dinner-where'];
+      lines.push(`*${DAY_NAMES[d.getDay()]}* · ${where||r.name}${where?'':' ('+r.time+' min)'}`);
+    }
+  }
+  const text = lines.join('\n');
+  if(navigator.share){
+    navigator.share({title:"Àpats Aina", text}).catch(()=>{});
+  } else {
+    navigator.clipboard?.writeText(text).then(()=>toast('Copiat!'));
+  }
+});
+
+document.getElementById('logout-btn').addEventListener('click',()=>{
+  if(confirm('Tancar sessió? Hauràs d\'introduir la clau de nou.')){
+    localStorage.removeItem('aina_auth');
+    AUTH_KEY = '';
+    location.reload();
+  }
+});
+
+
+
+/* ======================================================================
+   HAPTIC + UTILITATS TÀCTILS
+   ====================================================================== */
+function haptic(type='light'){
+  if(!navigator.vibrate) return;
+  const patterns={light:10, medium:20, success:[10,50,10], error:[20,30,20]};
+  navigator.vibrate(patterns[type]||10);
+}
+/* ======================================================================
+   CARRUSEL + BOTÓ AVUI
+   ====================================================================== */
+
+function updateTodayBtn(){
+  const btn = document.getElementById('btn-today');
+  if(!btn) return;
+  const isCurrent = fmtDate(mondayOf(new Date())) === fmtDate(weekStart);
+  btn.classList.toggle('visible', !isCurrent);
+}
+
+function initCarousel(){
+  const carousel = document.getElementById('week-carousel');
+  if(!carousel) return;
+  let scrollTimer = null;
+  carousel.addEventListener('scroll', ()=>{
+    if(scrollTimer) clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(()=>{
+      const w = carousel.offsetWidth;
+      if(!w) return;
+      const pos = carousel.scrollLeft;
+      const tol = w * 0.3; // tolerància 30%
+      if(pos < tol){
+        // Ha anat al slot anterior
+        weekStart.setDate(weekStart.getDate() - 7);
+        renderWeek();
+      } else if(pos > w + tol){
+        // Ha anat al slot següent
+        weekStart.setDate(weekStart.getDate() + 7);
+        renderWeek();
+      }
+    }, 200);
+  },{passive:true});
+}
+
+// Botó avui
+document.getElementById('btn-today')?.addEventListener('click',()=>{
+  weekStart = mondayOf(new Date());
+  renderWeek();
+});
+
+// Swipe per a vista mensual
+(()=>{
+  let xStart=0, yStart=0, swiping=false;
+  document.querySelector('main')?.addEventListener('touchstart', e=>{
+    if(currentView==='week') return;
+    xStart=e.touches[0].clientX; yStart=e.touches[0].clientY; swiping=true;
+  },{passive:true});
+  document.querySelector('main')?.addEventListener('touchend', e=>{
+    if(!swiping||currentView!=='month'){ swiping=false; return; }
+    swiping=false;
+    const dx=e.changedTouches[0].clientX-xStart;
+    const dy=Math.abs(e.changedTouches[0].clientY-yStart);
+    if(Math.abs(dx)<70||dy>80) return;
+    weekStart.setDate(weekStart.getDate()+(dx<0?7:-7));
+    renderMonth();
+  },{passive:true});
+})();
+
+
+/* ======================================================================
+   TIQUET — càmera, fitxer, PDF, Claude API
+   ====================================================================== */
+
+// Llegir fitxer com a base64
+function fileToBase64(file){
+  return new Promise((res,rej)=>{
+    const r = new FileReader();
+    r.onload = ()=> res(r.result.split(',')[1]);
+    r.onerror = rej;
+    r.readAsDataURL(file);
+  });
+}
+
+// Llegir PDF com a text (si és text seleccionable)
+function pdfToText(file){
+  return new Promise((res)=>{
+    const r = new FileReader();
+    r.onload = e => {
+      const bytes = new Uint8Array(e.target.result);
+      let text = '';
+      // Extreure text ASCII del PDF (suficient per a tiquets digitals)
+      for(let i=0;i<bytes.length-1;i++){
+        const c = bytes[i];
+        if(c >= 32 && c < 127) text += String.fromCharCode(c);
+        else if(c===10||c===13) text += '\n';
+      }
+      // Filtrar seqüències de mínim 3 caràcters llegibles
+      const lines = text.split('\n')
+        .map(l=>l.replace(/[^\x20-\x7E]/g,'').trim())
+        .filter(l=>l.length>2);
+      res(lines.join('\n'));
+    };
+    r.onerror = ()=> res('');
+    r.readAsArrayBuffer(file);
+  });
+}
+
+// Cridar Claude per analitzar el tiquet
+async function analyzeTicket(content, type){
+  // type: 'image' (base64) o 'text'
+  const systemPrompt = `Ets un assistent que analitza tiquets de compra de supermercat.
+La teva tasca és identificar ÚNICAMENT productes alimentaris i d'higiene per a un nadó/infant petit.
+Ignora: productes de neteja de la llar, paper, bosses, electrodomèstics, roba.
+Per cada producte retorna:
+- name: nom curt i clar en català
+- qty: quantitat amb unitat (ex: "500g", "1 L", "6 units", "1 pack")
+- cat: "Fresc" (carns, peixos, làctics, fruites, verdures fresques), "Sec" (pasta, arròs, conserves, cereals) o "Congelat"
+Retorna ÚNICAMENT un JSON vàlid amb format: {"products":[{"name":"...","qty":"...","cat":"..."}]}
+Sense cap text addicional, sense markdown, sense backticks.`;
+
+  let messages;
+  if(type === 'image'){
+    messages = [{
+      role:"user",
+      content:[
+        {type:"image",source:{type:"base64",media_type:"image/jpeg",data:content}},
+        {type:"text",text:"Analitza aquest tiquet de compra i retorna el JSON dels productes alimentaris."}
+      ]
+    }];
+  } else {
+    messages = [{
+      role:"user",
+      content:`Analitza aquest tiquet de compra i retorna el JSON dels productes alimentaris.\n\nCONTINGUT DEL TIQUET:\n${content.substring(0,3000)}`
+    }];
+  }
+
+  const resp = await fetch("https://api.anthropic.com/v1/messages",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({
+      model:"claude-sonnet-4-20250514",
+      max_tokens:1000,
+      system: systemPrompt,
+      messages
+    })
+  });
+
+  if(!resp.ok) throw new Error('API error '+resp.status);
+  const data = await resp.json();
+  const text = data.content?.find(b=>b.type==='text')?.text||'{}';
+  // Netejar possibles backticks o prefix
+  const clean = text.replace(/```json|```/g,'').trim();
+  return JSON.parse(clean);
+}
+
+// Mostrar overlay de revisió
+function showReview(products, filename){
+  const overlay = document.getElementById('review-overlay');
+  const body = document.getElementById('review-body');
+  const subtitle = document.getElementById('review-subtitle');
+
+  subtitle.textContent = `${filename} · ${products.length} productes detectats`;
+
+  // Estat de selecció (tots seleccionats per defecte)
+  const selected = products.map(()=>true);
+
+  function renderReviewItems(){
+    body.innerHTML = products.map((p,i)=>`
+      <div class="review-item${selected[i]?'':' excluded'}" data-idx="${i}">
+        <div class="review-check${selected[i]?'':' off'}" data-check="${i}">${selected[i]?'✓':''}</div>
+        <div class="review-name">${p.name}</div>
+        <div class="review-qty">${p.qty||''}</div>
+        <span class="review-cat ${(p.cat||'sec').toLowerCase()}">${p.cat||'Sec'}</span>
+      </div>
+    `).join('');
+
+    body.querySelectorAll('[data-check]').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const idx = parseInt(btn.dataset.check);
+        selected[idx] = !selected[idx];
+        haptic('light');
+        renderReviewItems();
+      });
+    });
+  }
+
+  renderReviewItems();
+  overlay.classList.add('show');
+
+  // Confirmar → afegir al rebost
+  document.getElementById('review-confirm').onclick = ()=>{
+    const toAdd = products.filter((_,i)=>selected[i]);
+    toAdd.forEach(p=>{
+      const exists = state.inventory.findIndex(
+        i=>i.name.toLowerCase()===p.name.toLowerCase()
+      );
+      if(exists>=0){
+        state.inventory[exists].qty = p.qty||state.inventory[exists].qty;
+      } else {
+        state.inventory.push({
+          cat: p.cat||'Sec',
+          name: p.name,
+          qty: p.qty||''
+        });
+      }
+    });
+    scheduleSave();
+    haptic('success');
+    overlay.classList.remove('show');
+    toast(`${toAdd.length} productes afegits al rebost ✓`);
+    // Si estem a la pestanya Rebost, actualitzar
+    if(document.getElementById('pane-inv').classList.contains('active')){
+      renderInventory();
+    }
+  };
+}
+
+// Processar fitxer (imatge o PDF)
+async function processTicketFile(file){
+  if(!file) return;
+  const overlay = document.getElementById('review-overlay');
+  const body = document.getElementById('review-body');
+
+  // Mostrar loading
+  body.innerHTML = `<div class="review-loading">
+    <div class="ptr-spinner spin"></div>
+    Analitzant tiquet...
+  </div>`;
+  overlay.classList.add('show');
+
+  try{
+    let result;
+    const isPDF = file.type==='application/pdf' || file.name?.endsWith('.pdf');
+
+    if(isPDF){
+      const text = await pdfToText(file);
+      if(text.length < 50){
+        // PDF escanejat → tractar com imatge
+        const b64 = await fileToBase64(file);
+        result = await analyzeTicket(b64,'image');
+      } else {
+        result = await analyzeTicket(text,'text');
+      }
+    } else {
+      const b64 = await fileToBase64(file);
+      result = await analyzeTicket(b64,'image');
+    }
+
+    if(!result.products||!result.products.length){
+      body.innerHTML = '<div class="review-loading">No s\'he pogut detectar cap producte. Prova de nou amb una imatge més clara.</div>';
+      return;
+    }
+
+    showReview(result.products, file.name||'Tiquet');
+  } catch(e){
+    console.error(e);
+    body.innerHTML = `<div class="review-loading">Error en analitzar el tiquet. Comprova la connexió i torna-ho a intentar.</div>`;
+  }
+}
+
+// Binding botons càmera i fitxer
+document.getElementById('upload-camera')?.addEventListener('click',()=>{
+  haptic('light');
+  document.getElementById('file-camera').click();
+});
+document.getElementById('upload-file')?.addEventListener('click',()=>{
+  haptic('light');
+  document.getElementById('file-picker').click();
+});
+document.getElementById('file-camera')?.addEventListener('change', e=>{
+  processTicketFile(e.target.files[0]);
+  e.target.value=''; // reset per poder tornar a seleccionar el mateix fitxer
+});
+document.getElementById('file-picker')?.addEventListener('change', e=>{
+  processTicketFile(e.target.files[0]);
+  e.target.value='';
+});
+document.getElementById('review-cancel')?.addEventListener('click',()=>{
+  document.getElementById('review-overlay').classList.remove('show');
+});
+
+/* ======================================================================
+   PWA INSTALL BANNER
+   ====================================================================== */
+let installPromptEvent = null;
+
+// Detectar si l'app ja està instal·lada (mode standalone)
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches
+  || window.navigator.standalone===true;
+
+window.addEventListener('beforeinstallprompt', e=>{
+  e.preventDefault();
+  installPromptEvent = e;
+  // No mostrar si ja està instal·lada o si l'usuari l'ha descartat
+  if(isStandalone) return;
+  const dismissed = localStorage.getItem('pwa_dismissed');
+  if(dismissed) return;
+  // Mostrar banner després de 4 segons
+  setTimeout(()=>{
+    document.getElementById('install-banner')?.classList.add('show');
+  }, 4000);
+});
+
+document.getElementById('install-btn')?.addEventListener('click', async ()=>{
+  if(!installPromptEvent) return;
+  installPromptEvent.prompt();
+  const {outcome} = await installPromptEvent.userChoice;
+  document.getElementById('install-banner')?.classList.remove('show');
+  if(outcome==='accepted') toast('App instal·lada! 🎉');
+  installPromptEvent = null;
+});
+
+document.getElementById('install-close')?.addEventListener('click',()=>{
+  document.getElementById('install-banner')?.classList.remove('show');
+  localStorage.setItem('pwa_dismissed','1');
+});
+
+window.addEventListener('appinstalled',()=>{
+  document.getElementById('install-banner')?.classList.remove('show');
+});
+
+// ── PULL TO REFRESH ──────────────────────────────────────────────
+(()=>{
+  let ptrStartY=0, ptrActive=false, ptrTriggered=false;
+  const PTR_THRESHOLD = 70;
+
+  // Crear indicador
+  const indicator = document.createElement('div');
+  indicator.className = 'ptr-indicator';
+  indicator.innerHTML = '<div class="ptr-spinner" id="ptr-spin"></div><span id="ptr-text">Actualitza</span>';
+  document.querySelector('main')?.prepend(indicator);
+
+  document.querySelector('main')?.addEventListener('touchstart', e=>{
+    const firstSlot = document.getElementById('slot-curr');
+    if(!firstSlot) return;
+    const scrollTop = firstSlot.scrollTop;
+    if(scrollTop > 0) return; // Només des del top
+    ptrStartY = e.touches[0].clientY;
+    ptrActive = true;
+    ptrTriggered = false;
+  },{passive:true});
+
+  document.querySelector('main')?.addEventListener('touchmove', e=>{
+    if(!ptrActive) return;
+    const dy = e.touches[0].clientY - ptrStartY;
+    if(dy < 20) return;
+    const progress = Math.min(dy/PTR_THRESHOLD, 1);
+    indicator.classList.toggle('pulling', dy > 20);
+    document.getElementById('ptr-spin').style.transform = `rotate(${progress*270}deg)`;
+    if(dy > PTR_THRESHOLD && !ptrTriggered){
+      ptrTriggered = true;
+      haptic('medium');
+      document.getElementById('ptr-text').textContent = 'Deixa anar per actualitzar';
+    }
+  },{passive:true});
+
+  document.querySelector('main')?.addEventListener('touchend', async ()=>{
+    if(!ptrActive) return;
+    ptrActive = false;
+    indicator.classList.remove('pulling');
+    if(!ptrTriggered) return;
+    // Sincronitzar
+    document.getElementById('ptr-spin').classList.add('spin');
+    document.getElementById('ptr-text').textContent = 'Sincronitzant...';
+    indicator.classList.add('pulling');
+    try{
+      const data = await apiGet();
+      Object.assign(state, data);
+      if(!state.feedback) state.feedback={};
+      if(!state.mealOverrides) state.mealOverrides={};
+      if(!state.inventory) state.inventory=[];
+      if(!state.shopDone) state.shopDone={};
+      if(!state.menus) state.menus={};
+      haptic('success');
+      renderWeek();
+    }catch(e){ haptic('error'); }
+    document.getElementById('ptr-spin').classList.remove('spin');
+    indicator.classList.remove('pulling');
+    ptrTriggered = false;
+  },{passive:true});
+})();
+
+/* ======================================================================
+   TECLAT VIRTUAL — evitar que les tabs quedin amagades
+   ====================================================================== */
+if(window.visualViewport){
+  let lastHeight = window.visualViewport.height;
+  window.visualViewport.addEventListener('resize',()=>{
+    const nav = document.querySelector('nav.tabs');
+    const app = document.getElementById('app');
+    if(!nav||!app) return;
+    const vvh = window.visualViewport.height;
+    const diff = window.innerHeight - vvh;
+    // Si el teclat ha pujat, afegir padding al nav per que no quedi amagat
+    if(diff > 100){
+      // Teclat obert
+      nav.style.transform = `translateY(-${diff}px)`;
+      app.style.height = vvh + 'px';
+    } else {
+      // Teclat tancat
+      nav.style.transform = '';
+      app.style.height = '';
+    }
+    lastHeight = vvh;
+  });
+}
+/* ======================================================================
+   INIT
+   ====================================================================== */
+(async ()=>{
+  if(AUTH_KEY){
+    try{
+      const data = await apiGet();
+      Object.assign(state, data);
+      if(!state.feedback) state.feedback = {};
+      if(!state.mealOverrides) state.mealOverrides = {};
+      if(!state.inventory) state.inventory = [];
+      if(!state.shopDone) state.shopDone = {};
+      document.getElementById('login').style.display='none';
+      document.getElementById('app').style.display='flex';
+      renderWeek();
+    }catch(e){
+      // mostra login
+    }
+  }
+})();
+</script>
+</body>
+</html>
