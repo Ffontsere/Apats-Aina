@@ -2265,18 +2265,142 @@ function getAdjacentDayProteins(dateKey){
     const school = getSchoolMenu(k);
     (school?.cats||[]).forEach(c=>{ if(PROT.includes(c)) cats.add(c); });
   });
+  // El dinar de CASA d'ahir (dia lliure) també compta: ja està generat/fixat.
+  const prevKey = fmtDate(prev);
+  if(isFreeDay(prevKey)){
+    const pl = storedWeekendLunchId(prevKey);
+    if(pl) (RECIPES[pl].cats||[]).forEach(c=>{ if(PROT.includes(c)) cats.add(c); });
+  }
   return cats;
 }
+
+/* ======================================================================
+   ANTI-REPETICIÓ — sopars veïns, ingredients clau i equilibri setmanal
+   (lectures DIRECTES de l'estat, mai getDefaultDinner/getWeekendLunch,
+   per evitar recursió amb ensureMonthInState)
+   ====================================================================== */
+function storedDinnerId(k){
+  const o = state.mealOverrides?.[k+'-dinner'];
+  if(o && RECIPES[o]) return o;
+  const m = state.menus?.[k.substring(0,7)]?.dinners?.[k];
+  return (m && RECIPES[m]) ? m : null;
+}
+function storedWeekendLunchId(k){
+  const o = state.mealOverrides?.[k+'-lunch-recipe'];
+  if(o && RECIPES[o]) return o;
+  const m = state.menus?.[k.substring(0,7)]?.weekendLunches?.[k];
+  return (m && RECIPES[m]) ? m : null;
+}
+
+/* Ingredients clau detectables tant en text lliure (menú escolar) com en
+   la llista d'ingredients d'una recepta. S'usa per vetar que el sopar
+   comparteixi ingredient principal amb el dinar del mateix dia. */
+const KEY_ING = [
+  ['arros',/\b(arros|paella|risotto)\b/],
+  ['pasta',/\b(pasta|fideu|fideus|fideua|macarrons?|espirals?|espaguetis?|llacets?|escudella)\b/],
+  ['ou',/\b(ous?|truita|remenat)\b/],
+  ['carbasso',/\b(carbasso|carabasso)\b/],
+  ['carbassa',/\bcarbassa\b/],
+  ['pastanaga',/pastanag/],
+  ['patata',/\bpatat/],
+  ['mongeta-tendra',/mongetes? tendr/],
+  ['mongetes',/\bmongetes?\b(?! tendr)/],
+  ['llenties',/\b(llenties|llentilles)\b/],
+  ['cigrons',/\bcigrons\b/],
+  ['faves',/\bfaves\b/],
+  ['pesols',/\bpesols\b/],
+  ['broquil',/\bbroquil\b/],
+  ['coliflor',/\bcoliflor\b/],
+  ['espinacs',/\bespinacs\b/],
+  ['bledes',/\bbledes\b/],
+  ['porro',/\bporro\b/],
+  ['xampinyons',/\bxampinyons\b/],
+  ['col',/\bcol\b/],
+  ['pebrot',/\bpebrot/],
+  ['carn-picada',/carn picada|hamburguesa|mandonguilles/],
+  ['pollastre',/pollastre/],
+  ['porc',/\bporc\b|fricando|pernil|botifarra/],
+  ['vedella',/vedella/],
+  ['lluc',/\blluc\b/],
+  ['salmo',/\bsalmo\b/],
+  ['tonyina',/tonyina/],
+  ['calamars',/calamar/],
+  ['bacalla',/bacalla/],
+  ['tomaquet',/tomaquet/]            // ingredient "menor": penalització suau
+];
+const MINOR_ING = new Set(['tomaquet']);
+const COMMON_ING = new Set(['tomaquet','patata','pastanaga']);   // no compten entre sopars consecutius
+/* Plats compostos: el nom no diu els ingredients (p.ex. "samfaina"). */
+const DISH_EXPAND = [
+  [/samfaina/, ' carbasso pebrot tomaquet '],
+  [/escudella/, ' pasta patata pastanaga '],
+  [/napolitana|sofregit/, ' tomaquet '],
+  [/menestra/, ' pesols pastanaga mongeta tendra '],
+  [/trinxat/, ' patata col '],
+  [/vichyssoise/, ' porro patata ']
+];
+function keyIngredients(text){
+  let t = ingredientNorm(text||'');
+  DISH_EXPAND.forEach(([re,add])=>{ if(re.test(t)) t += add; });
+  const out = new Set();
+  KEY_ING.forEach(([k,re])=>{ if(re.test(t)) out.add(k); });
+  return out;
+}
+const _recipeKeyCache = {};
+function recipeKeyIngredients(id){
+  if(_recipeKeyCache[id]) return _recipeKeyCache[id];
+  const r = RECIPES[id];
+  return (_recipeKeyCache[id] = keyIngredients(r ? (r.ingredients||[]).map(i=>i.n).join(' · ') : ''));
+}
+
+/* Sopars veïns: ahir (generat o fixat) i demà NOMÉS si l'usuari l'ha fixat
+   manualment (el sopar de demà guardat podria ser obsolet en un recàlcul). */
+function getNeighbourDinners(dateKey){
+  const d = new Date(dateKey+'T12:00:00');
+  const prev = new Date(d); prev.setDate(d.getDate()-1);
+  const next = new Date(d); next.setDate(d.getDate()+1);
+  const prot = new Set(), ing = new Set();
+  const take = id => {
+    (RECIPES[id].cats||[]).forEach(c=>{ if(PROT.includes(c)) prot.add(c); });
+  };
+  const pid = storedDinnerId(fmtDate(prev));
+  if(pid){ take(pid); recipeKeyIngredients(pid).forEach(t=>ing.add(t)); }
+  const no = state.mealOverrides?.[fmtDate(next)+'-dinner'];
+  if(no && RECIPES[no]){ take(no); recipeKeyIngredients(no).forEach(t=>ing.add(t)); }
+  return {prot, ing};
+}
+
+/* Categories ja assignades a la setmana (dl-dg) de dateKey: dinars (escola o
+   casa) de tota la setmana + sopars anteriors a dateKey. */
+function getWeekCatCounts(dateKey){
+  const d = new Date(dateKey+'T12:00:00');
+  const mon = new Date(d); mon.setDate(d.getDate() - (d.getDay()===0 ? 6 : d.getDay()-1));
+  const cnt = {};
+  const addCats = cs => (cs||[]).forEach(c=>{ cnt[c]=(cnt[c]||0)+1; });
+  for(let i=0;i<7;i++){
+    const dt = new Date(mon); dt.setDate(mon.getDate()+i);
+    const k = fmtDate(dt);
+    const sc = getSchoolMenu(k);
+    if(sc && !sc.festiu) addCats(sc.cats);
+    else { const l = storedWeekendLunchId(k); if(l) addCats(RECIPES[l].cats); }
+    if(k < dateKey){ const sd = storedDinnerId(k); if(sd) addCats(RECIPES[sd].cats); }
+  }
+  return cnt;
+}
+const WEEK_MAX = {peix:3, carn:4, ou:4};   // límits de l'apartat "Equilibri setmanal"
 
 /* Genera una proposta per a un àpat donat (sopar, o dinar de cap de setmana),
    evitant repetir categories de `refCats` i receptes recents/del mateix dia.
    `avoidRecipes` és un Set d'ids ja triats per al mateix dia (p.ex. el dinar
    quan calculem el sopar) per garantir que dinar i sopar mai coincideixin. */
-function pickMeal(dateKey, refCats, avoidRecipes){
+function pickMeal(dateKey, refCats, avoidRecipes, refText){
   refCats = refCats || [];
   avoidRecipes = avoidRecipes || new Set();
   const recentlyUsed = getRecentlyUsedRecipes(dateKey, 14);
   const adjacentProt = getAdjacentDayProteins(dateKey);
+  const nb = getNeighbourDinners(dateKey);            // sopars veïns
+  const refKeys = keyIngredients(refText||'');        // ingredients del dinar d'avui
+  const wk = getWeekCatCounts(dateKey);               // equilibri de la setmana
   const favs = getFavorites();
   const d = new Date(dateKey+'T12:00:00');
   const isWeekday = d.getDay()>=1 && d.getDay()<=5;
@@ -2290,6 +2414,18 @@ function pickMeal(dateKey, refCats, avoidRecipes){
     // animal que el dinar escolar d'ahir o de demà.
     const recProt = PROT.filter(p => (r.cats||[]).includes(p));
     if(recProt.some(p => adjacentProt.has(p))) score -= 200;
+    // NOU — mai la mateixa proteïna animal que el sopar d'ahir (o el de demà si
+    // està fixat). Gairebé dur: només cedeix si no hi ha cap alternativa.
+    if(recProt.some(p => nb.prot.has(p))) score -= 500;
+    // NOU — ingredient principal compartit amb el dinar d'AVUI (p.ex. carbassó
+    // al dinar i al sopar). El tomàquet és "menor" (només −40).
+    const rk = recipeKeyIngredients(id);
+    rk.forEach(t=>{ if(refKeys.has(t)) score -= MINOR_ING.has(t) ? 40 : 400; });
+    // NOU — ingredient principal repetit amb el sopar d'ahir (excepte comuns).
+    rk.forEach(t=>{ if(nb.ing.has(t) && !COMMON_ING.has(t)) score -= 100; });
+    // NOU — no superar els màxims setmanals de peix/carn/ous; llegum fins a 3.
+    recProt.forEach(p => { if((wk[p]||0) + 1 > WEEK_MAX[p]) score -= 120; });
+    if((r.cats||[]).includes('llegum') && (wk.llegum||0) < 3) score += 10;
     if(favs.has(id)) score += 5;
     if(isWeekday && r.time <= 20) score += 3;
     // Desempat dispers i estable: hash de (id+dia)
@@ -2309,10 +2445,11 @@ function smartDinnerSuggestion(dateKey){
     const lunchId = getWeekendLunch(dateKey);
     const lunchCats = lunchId && RECIPES[lunchId] ? (RECIPES[lunchId].cats||[]) : [];
     const avoid = new Set(lunchId ? [lunchId] : []);
-    return pickMeal(dateKey, lunchCats, avoid);
+    const lunchText = lunchId && RECIPES[lunchId] ? (RECIPES[lunchId].ingredients||[]).map(i=>i.n).join(' · ') : '';
+    return pickMeal(dateKey, lunchCats, avoid, lunchText);
   }
   // Entre setmana: complementa el dinar de l'escola.
-  return pickMeal(dateKey, school?.cats || [], new Set());
+  return pickMeal(dateKey, school?.cats || [], new Set(), state.mealOverrides?.[dateKey+'-lunch'] || school?.text || '');
 }
 
 /* Dinar de cap de setmana proposat per nosaltres: no té dinar escolar de
@@ -2322,10 +2459,18 @@ function smartDinnerSuggestion(dateKey){
 function smartWeekendLunch(dateKey){
   const recentlyUsed = getRecentlyUsedRecipes(dateKey, 14);
   const favs = getFavorites();
+  const adjacentProt = getAdjacentDayProteins(dateKey);   // dinars veïns (escola/casa)
+  const nb = getNeighbourDinners(dateKey);                // sopar d'ahir
+  const wk = getWeekCatCounts(dateKey);
   const scored = Object.entries(RECIPES).map(([id,r])=>{
     const cats = r.cats||[];
     let score = 0;
     if(recentlyUsed.has(id)) score -= 300;
+    // NOU — no repetir proteïna animal amb els dinars veïns ni amb el sopar d'ahir
+    const lp = PROT.filter(p => cats.includes(p));
+    if(lp.some(p => adjacentProt.has(p))) score -= 200;
+    if(lp.some(p => nb.prot.has(p))) score -= 300;
+    lp.forEach(p => { if((wk[p]||0) + 1 > WEEK_MAX[p]) score -= 120; });
     if(favs.has(id)) score += 5;
     // Dinar: preferim plat amb proteïna animal i verdura (àpat principal)
     if(cats.some(c=>PROT.includes(c))) score += 15;
